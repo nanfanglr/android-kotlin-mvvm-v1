@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 0
+
+    defaultConfig {
+        applicationId "com.rui.kotlin_mvvm"
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersio
+
+        versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+//        release {
+//            keyAlias 'kotlin_mvvm'
+//            keyPassword '123456'
+//            storeFile file('kotlin_mvvm.jks')s
+//            storePassword '123456'
+//        }
+    }
+
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+
+    buildTypes {
+//        release {
+//            debuggable false
+//            minifyEnabled true
+//            zipAlignEnabled true
+//            multiDexEnabled true
+//            shrinkResources true    // 移除无用的resource文件
+//            resValue "string", "app_name", "搜于特盘点"
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+//        }
+
+        debug {
+            debuggable true
+            minifyEnabled false
+            zipAlignEnabled true
+//            shrinkResources true    // 移除无用的resource文件
+            resValue "string", "app_name", "kotlin_mvvm"
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            multiDexEnabled true
+        }
+
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                def fileName
+                if (outputFileName != null && outputFileName.endsWith('.apk')) {
+                    // 输出apk名称为kotlinmvvm-release-v1.0.0
+                    if (variant.buildType.name.equals('release')) {
+                        fileName = "kotlinmvvm-release-v${defaultConfig.versionName}.apk"
+                    } else if (variant.buildType.name.equals('debug')) {
+                        fileName = "kotlinmvvm-debug-v${defaultConfig.versionName}.apk"
+                    }
+                    outputFileName = fileName
+                }
+            }
+        }
+    }
+    //DataBinding
+    dataBinding {
+        enabled true
+    }
+
+    // 如果你的module 中使用了 Java1.8，那你必须也要添加如下代码到你的app gradle 中
+    // 否则会出现com.android.builder.dexing.DexArchiveBuilderException
+    compileOptions {//指定jdk 1.8 默认使用lambda表达式
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    //com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException: 3 字节的 UTF-8 序列的字节 3 无效。
+    //解决这个异常需要将带参数字符串资源定义在strings.xml中
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':common')
+    implementation project(':viewkit')
+    implementation project(':toolkit')
+    implementation projectDependencies.kotlin
+    implementation projectDependencies.appcompat
+    implementation projectDependencies.constraintLayout
+    implementation projectDependencies.recyclerview
+//    implementation projectDependencies.greendao
+//    implementation projectDependencies.stetho
+
+    // Dagger2
+    implementation projectDependencies.dagger
+    kapt projectDependencies.daggerAnnotationProcessor
+    implementation projectDependencies.daggerAndroid
+    kapt projectDependencies.daggerAndroidAnnotationProcessor
+    testImplementation projectDependencies.jUnit
+    androidTestImplementation projectDependencies.testRunner
+    androidTestImplementation projectDependencies.espressoCore
+}

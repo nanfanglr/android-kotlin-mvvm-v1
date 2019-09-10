@@ -1,0 +1,79 @@
+ext.projectDependencies = [
+
+// Kotlin
+kotlin                          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlinVersion",
+// Unit test support
+jUnit                           : "junit:junit:$versions.jUnit",
+// Mocking framework to mock and verify calls.
+mockito                         : "org.mockito:mockito-core:$versions.mockito",
+//Libraries
+appcompat                       : "com.android.support:appcompat-v7:$versions.appcompatVersion",
+supportDesign                   : "com.android.support:design:$versions.appcompatVersion",
+recyclerview                    : "com.android.support:recyclerview-v7:$versions.appcompatVersion",
+constraintLayout                : "com.android.support.constraint:constraint-layout:$versions.constraintLayoutVersion",
+multidex                        : "com.android.support:multidex:$versions.multidexVersion",
+testRunner                      : "com.android.support.test:runner:$versions.testVersion",
+espressoCore                    : "com.android.support.test.espresso:espresso-core:$versions.espressoVersion",
+lifecycleExtensions             : "android.arch.lifecycle:extensions:$versions.lifecycleVersion",
+
+// Logging library
+timber                          : "com.jakewharton.timber:timber:$versions.timber",
+
+// Dagger dependency injection - Includes android specific components
+daggerAnnotationProcessor       : "com.google.dagger:dagger-compiler:$versions.dagger",
+dagger                          : "com.google.dagger:dagger:$versions.dagger",
+daggerAndroid                   : "com.google.dagger:dagger-android-support:$versions.dagger",
+daggerAndroidAnnotationProcessor: "com.google.dagger:dagger-android-processor:$versions.dagger",
+
+// Retrofit networking
+retrofit                        : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+retrofitGson                    : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+okhttpLoggingInterceptor        : "com.squareup.okhttp3:logging-interceptor:$versions.loggingInterceptor",
+retrofitRxJava2Adapter          : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+
+// Retrofit mock mode for simulating network responses. See https://youtu.be/t34AQlblSeE?t=53m32s
+retrofitMockMode                : "com.squareup.retrofit2:retrofit-mock:$versions.retrofit",
+
+// RxJava
+rxAndroid                       : "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid",
+rxJava2                         : "io.reactivex.rxjava2:rxjava:$versions.rxJava",
+
+// Image loading
+glideImageLoading               : "com.github.bumptech.glide:glide:$versions.glide",
+glideAnnotationProcessor        : "com.github.bumptech.glide:compiler:$versions.glide",
+
+// Stetho debug bridge through google chrome console
+stetho                          : "com.facebook.stetho:stetho:$versions.stetho",
+
+//leakcanary
+leakcanary_android              : "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary",
+leakcanary_android_no_op        : "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary",
+leakcanary_support_fragment     : "com.squareup.leakcanary:leakcanary-support-fragment:$versions.leakcanary",
+
+//BaseRecyclerViewAdapterHelper
+BaseRecyclerViewAdapterHelper   : "com.github.CymChad:BaseRecyclerViewAdapterHelper:$versions.BRVAH",
+//下拉刷新及上拉加载更多控件
+SmartRefreshLayout              : "com.scwang.smartrefresh:SmartRefreshLayout:$versions.SmartRefresh",
+SmartRefreshHeader              : "com.scwang.smartrefresh:SmartRefreshHeader:$versions.SmartRefresh",
+//greendao
+greendao                        : "org.greenrobot:greendao:$versions.greendao",
+//eventbus
+eventbus                        : "org.greenrobot:eventbus:$versions.eventbus",
+//rxBinding
+rxBinding                       : "com.jakewharton.rxbinding2:rxbinding:$versions.rxBinding",
+// 缩放控件photoview
+photoview                       : "com.bm.photoview:library:$versions.photoview",
+//zxing
+zxing                           : "com.google.zxing:core:$versions.zxing",
+zxingandroidembedded            : "com.journeyapps:zxing-android-embedded:$versions.zxingandroidembedded",
+//easypermissions
+easypermissions                 : "pub.devrel:easypermissions:$versions.easypermissions",
+// PictureSelector
+PictureSelector                 : "com.github.LuckSiege.PictureSelector:picture_library:$versions.PictureSelector",
+//  aliyunOss
+aliyunOss                       : "com.aliyun.dpa:oss-android-sdk:$versions.aliyunOss",
+// https://github.com/hdodenhof/CircleImageView
+circleimageview                 : "de.hdodenhof:circleimageview:$versions.circleimageview",
+androidpickerView               : "com.contrarywind:Android-PickerView:$versions.androidpickerView"
+
+]

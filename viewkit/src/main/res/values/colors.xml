@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gray_bg1">#eeeeee</color>
+    <color name="gray_line1">#d0d0d0</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_323232">#323232</color>
+    <color name="color_dedede">#dedede</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_222222">#222222</color>
+    <color name="color_ccc">#ccc</color>
+    <color name="color_eee">#eee</color>
+    <color name="colorhead">#f9f16c</color>
+
+</resources>

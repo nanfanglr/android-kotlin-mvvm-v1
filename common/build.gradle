@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersio
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //DataBinding
+    dataBinding {
+        enabled true
+    }
+
+    compileOptions {//指定jdk 1.8 默认使用lambda表达式
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':mvvm')
+    api project(':retrofit2')
+    implementation projectDependencies.recyclerview
+
+    //BaseRecyclerViewAdapterHelper
+    api projectDependencies.BaseRecyclerViewAdapterHelper
+    //SmartRefreshLayout
+    api projectDependencies.SmartRefreshLayout
+
+    // Dagger2
+    implementation projectDependencies.dagger
+    kapt projectDependencies.daggerAnnotationProcessor
+    implementation projectDependencies.daggerAndroid
+    kapt projectDependencies.daggerAndroidAnnotationProcessor
+
+    testImplementation projectDependencies.jUnit
+    androidTestImplementation projectDependencies.testRunner
+    androidTestImplementation projectDependencies.espressoCore
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}

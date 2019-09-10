@@ -1,0 +1,2 @@
+include ':app', ':mvvm', ':retrofit2', ':toolkit', ':common','viewkit'
+rootProject.name='kotlin_mvvm'

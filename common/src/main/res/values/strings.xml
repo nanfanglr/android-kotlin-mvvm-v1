@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">common</string>
+    <string name="empty_no_data">暂无相关数据</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="more"><u>更多</u></string>
+    <string name="help"><u>帮助?</u></string>
+    <string name="close">关闭</string>
+    <string name="fupan_hinta">复盘只能对1个清单进行操作,请确认只选中一个清单!</string>
+    <string name="fupan_hintb">请选择1个清单!</string>
+    <string name="fupan_hintc">该清单已封单，无法进行复盘!</string>
+    <string name="inventory">盘点系统</string>
+    <string name="numbers_letters">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="current_stock">实时库存</string>
+    <string name="history_data">历史数据</string>
+    <string name="check_scan">盘点扫描</string>
+    <string name="return_manager">退货单管理</string>
+
+    <string name="account">盘点账号</string>
+    <!--<string name="account_des">
+        · 谁可以申请账号？\n
+        必须是搜于特集团股份有限公司门店盘点人员\n
+        · 怎样申请账号？\n
+        盘点人员把“姓名+手机号”发给对应负责人；例如区域负责人，客服部对接人等等；申请账号后即可登录使用。\n
+        · 保密声明\n
+        盘点账号暂无密码登录，会记录所有的操作，请妥善保管自己账号，请勿外泄；<b>务必使用自己账号登录盘点，否则不提供任何技术支持！</b></string>-->
+
+    <string name="instructions">盘点使用说明</string>
+    <string name="instructions_a">盘点门店编码：请输入S开头的门店编码，例如：S44926；</string>
+    <string name="instructions_b">确认门店编码，盘点的数据将和该门店绑定，无法变更，请反复确认！</string>
+
+
+    <string name="manager_instructions">盘点管理使用说明</string>
+    <string name="scanproblem"><b>--如何解决扫描不了的问题？</b>
+     方法1.请重新关机后并拆掉机子电池，3分钟后再开机，若无效则采用方法2。
+    </string>
+
+    <!--    <string name="fupan">
+            <b>&#45;&#45;如何使用复盘？</b>
+            点击顶部的门店编码即可对本次所有数据进行修改，修改门店编码时需要连接网络哦！
+        </string>-->
+
+    <string name="commitdata"><b>--无法提交数据？</b>
+         提交数据之前，需要在电脑创建“任务单”才能提交；如不清楚请联系总部盘点对接人。
+    </string>
+
+
+    <string name="scan_instruction">盘点扫描使用说明</string>
+    <string name="scan_instruction_cancel"><b>--“撤销”功能怎样使用？</b>
+        “撤销”最多只能撤销5次，每次撤销都是删除上一次的扫描结果。撤销后无法再找回，请谨慎处理。</string>
+    <string name="currentphonetext">请输入当前登录手机号</string>
+    <string name="currentphonewrong">当前登录手机号不正确，请输入重新输入或重新登录！</string>
+
+    <string name="rationale_storage">盘点需要存储相关权限，请同意开启</string>
+</resources>

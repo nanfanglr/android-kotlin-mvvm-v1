@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--这个文件作用主要是为了生成BR.viewModel、BR.adapter、BR.layoutManager以便在封装基础类的时候直接使用-->
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.rui.common.base.BaseListVModel" />
+
+        <variable
+            name="adapter"
+            type="com.chad.library.adapter.base.BaseQuickAdapter" />
+
+        <variable
+            name="layoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+    </LinearLayout>
+</layout>

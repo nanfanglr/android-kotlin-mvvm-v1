@@ -1,0 +1,71 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersio
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //DataBinding
+    dataBinding {
+        enabled true
+    }
+
+    compileOptions {//指定jdk 1.8 默认使用lambda表达式
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation projectDependencies.kotlin
+
+    api projectDependencies.appcompat
+    api projectDependencies.recyclerview
+    api projectDependencies.multidex
+    api projectDependencies.lifecycleExtensions
+    // RxJava
+    api projectDependencies.rxAndroid
+    api projectDependencies.rxJava2
+    // Logging
+    api projectDependencies.timber
+    // Dagger2
+    implementation projectDependencies.dagger
+    kapt projectDependencies.daggerAnnotationProcessor
+    implementation projectDependencies.daggerAndroid
+    kapt projectDependencies.daggerAndroidAnnotationProcessor
+
+    //内存泄漏监控
+    debugImplementation(projectDependencies.leakcanary_android) {
+        //编译失败：无法访问：ActivityCompatApi23
+        //解决support包冲突问题，不能编译问题
+        exclude group: 'com.android.support'
+    }
+    releaseImplementation(projectDependencies.leakcanary_android_no_op) {
+        exclude group: 'com.android.support'
+    }
+
+    testImplementation projectDependencies.jUnit
+    androidTestImplementation projectDependencies.testRunner
+    androidTestImplementation projectDependencies.espressoCore
+
+}
+
