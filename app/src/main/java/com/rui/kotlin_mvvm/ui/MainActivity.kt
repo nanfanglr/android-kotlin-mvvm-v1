@@ -1,7 +1,8 @@
-package com.rui.kotlin_mvvm
+package com.rui.kotlin_mvvm.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.support.v7.app.AppCompatActivity
+import com.rui.kotlin_mvvm.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,4 +10,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
 }
