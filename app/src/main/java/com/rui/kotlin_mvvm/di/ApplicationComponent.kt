@@ -17,6 +17,8 @@
 package com.rui.kotlin_mvvm.di
 
 import com.rui.kotlin_mvvm.App
+import com.rui.kotlin_mvvm.di.module.ActivityBindingModule
+import com.rui.kotlin_mvvm.di.module.SingleTonModule
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.di.module.ApplicationModule
 import com.rui.mvvm.di.module.ViewModelFactoryModule
@@ -38,9 +40,10 @@ import javax.inject.Singleton
     modules = [
         ApplicationModule::class,
         AndroidSupportInjectionModule::class,
-//        ActivityBindingModule::class,
+        ActivityBindingModule::class,
         ViewModelFactoryModule::class,
-        RetrofitModule::class
+        RetrofitModule::class,
+        SingleTonModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<App> {
