@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.rui.kotlin_mvvm.di.vmodel.ProductImgFgVModel" />
+
+        <variable
+            name="adapter"
+            type="com.rui.common.adapter.BaseRvAdapter" />
+
+        <variable
+            name="layoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager" />
+    </data>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:finishLoadmore="@{viewModel.finishLoadmore}"
+        app:finishRefreshing="@{viewModel.finishRefreshing}"
+        app:loadNoMoreData="@{viewModel.loadNoMoreData}">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</layout>

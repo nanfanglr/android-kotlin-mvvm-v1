@@ -28,7 +28,12 @@ open abstract class BaseLazyVMFragment<DB : ViewDataBinding, VM : BaseViewModel>
 
     protected lateinit var viewModel: VM
 
-    private val _processBar: ProgressDialog by lazy { ProgressDialog(activity, ProgressDialog.THEME_HOLO_LIGHT) }
+    private val _processBar: ProgressDialog by lazy {
+        ProgressDialog(
+            activity,
+            ProgressDialog.THEME_HOLO_LIGHT
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,8 +72,18 @@ open abstract class BaseLazyVMFragment<DB : ViewDataBinding, VM : BaseViewModel>
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        lazyFetchDataIfPrepared()
+        Timber.d("---------->onStart=>")
+    }
+
+
     private fun lazyFetchDataIfPrepared() {
         // 用户可见fragment && 没有加载过数据 && 视图已经准备完毕
+        Timber.d("---------->userVisibleHint=${userVisibleHint}")
+        Timber.d("---------->!isViewPrepared=${!hasFetchData}")
+        Timber.d("---------->isViewPrepared=${isViewPrepared}")
         if (userVisibleHint && !hasFetchData && isViewPrepared) {
             hasFetchData = true
             lazyFetchData()
@@ -79,7 +94,6 @@ open abstract class BaseLazyVMFragment<DB : ViewDataBinding, VM : BaseViewModel>
      * 懒加载的方式获取数据，仅在满足fragment可见和视图已经准备好的时候调用一次
      */
     protected abstract fun lazyFetchData()
-
 
 
     /**

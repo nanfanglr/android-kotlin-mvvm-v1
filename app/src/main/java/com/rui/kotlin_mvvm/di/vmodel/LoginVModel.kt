@@ -50,10 +50,6 @@ class LoginVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app)
     @Inject
     lateinit var repository: UserRepository
 
-    init {
-
-    }
-
     fun initEvent() {
         phone.set(userMobile)
         phone.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
@@ -65,7 +61,6 @@ class LoginVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app)
             }
         })
     }
-
 
     fun onClickListenerBinding(view: View) {
         when {

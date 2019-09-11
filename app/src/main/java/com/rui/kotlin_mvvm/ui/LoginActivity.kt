@@ -2,6 +2,7 @@ package com.rui.kotlin_mvvm.ui
 
 import android.content.Intent
 import android.os.Bundle
+import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.ActivityLoginBinding
 import com.rui.kotlin_mvvm.di.vmodel.LoginVModel
 import com.rui.mvvm.EventObserver
@@ -13,7 +14,7 @@ class LoginActivity : BaseDaggerActivity<ActivityLoginBinding, LoginVModel>() {
     override fun getVMClass(): Class<LoginVModel> = LoginVModel::class.java
 
     override fun getLayoutID(savedInstanceState: Bundle?): Int =
-        com.rui.kotlin_mvvm.R.layout.activity_login
+        R.layout.activity_login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +33,11 @@ class LoginActivity : BaseDaggerActivity<ActivityLoginBinding, LoginVModel>() {
         }
     }
 
-    protected fun initOB() {
+    private fun initOB() {
         viewModel.initEvent()
         viewModel.loginSuccess.observe(this, EventObserver {
-
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
 
         })
     }

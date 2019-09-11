@@ -1,18 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</LinearLayout>
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+
+        <variable
+            name="fgPagerAdapter"
+            type="com.rui.kotlin_mvvm.ui.FgPagerAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.rui.kotlin_mvvm.di.vmodel.MainVModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        tools:context=".ui.MainActivity">
+
+        <com.rui.viewkit.HeadBar
+            android:id="@+id/headBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isTvLeftVis="false"
+            app:rightText="退出"
+            app:titleText="商品图上传"
+            app:tvRightOnclickListener="@{(view)->viewModel.closeAct(view)}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#eee"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <LinearLayout
+                android:id="@+id/ll_search_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shape_search_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_search" />
+
+                <EditText
+                    android:id="@+id/et_search_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入商品款号"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:onKey="@{(v, keyCode, event)->viewModel.onSearch(v, keyCode, event)}"
+                    android:text="@={viewModel.keyWord}"
+                    android:textSize="14dp" />
+
+                <ImageView
+                    android:id="@+id/iv_search_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:onClick="@{(view)->viewModel. clearkeyWord(view)}"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="4dp"
+                    android:src="@drawable/icon_btn_delete"
+                    android:visibility="@{TextUtils.isEmpty(viewModel.keyWord) &amp;&amp; viewModel.keyWord.length() == 0? View.GONE : View.VISIBLE}" />
+
+                <ImageView
+                    android:id="@+id/iv_search_scan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="6dp"
+                    android:src="@drawable/icon_qrcode_scan" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/textColor"
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+            app:tabTextColor="@color/color_999999" />
+        <!--   https://blog.csdn.net/zhizhuodewo6/article/details/80197620-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/deviderColor" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_head"
+            app:vpAdapter="@{fgPagerAdapter}" />
+
+    </LinearLayout>
+</layout>

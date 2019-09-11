@@ -16,6 +16,7 @@
 package com.rui.kotlin_mvvm.di.module
 
 import com.rui.kotlin_mvvm.ui.LoginActivity
+import com.rui.kotlin_mvvm.ui.MainActivity
 import com.rui.mvvm.di.scopes.ActivityScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -35,6 +36,10 @@ abstract class ActivityBindingModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [LoginModule::class])
     internal abstract fun loginActivity(): LoginActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [MainModule::class])
+    internal abstract fun mainActivity(): MainActivity
 
 
 }
