@@ -27,7 +27,6 @@ class ProductRepository @Inject constructor(private val netService: NetService) 
         return Single.create<ResultModel<ProductModel>> { emitter ->
             val resultModel = ResultModel<ProductModel>()
             resultModel.success = true
-            val pageData = ResultModel.PageData<ProductModel>()
             val list = ArrayList<ProductModel>()
             for (i in 0..8) {
                 val model = ProductModel()
@@ -43,8 +42,6 @@ class ProductRepository @Inject constructor(private val netService: NetService) 
                 }
                 list.add(model)
             }
-//            pageData.list = list
-//            resultModel.pageData = pageData
             resultModel.data=list
             resultModel.total = 29
             Timber.d("-------->getProducts.lise=${list.size}")

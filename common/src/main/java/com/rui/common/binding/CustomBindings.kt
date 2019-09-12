@@ -19,12 +19,14 @@ import android.databinding.BindingAdapter
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.rui.common.ImageLoader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import timber.log.Timber
 
@@ -92,7 +94,12 @@ fun setRvItems(
  */
 @BindingAdapter(value = ["app:ivUrl", "app:ivTimeStamp"], requireAll = false)
 fun setImageUri(imageView: ImageView, url: String, timeStamp: Long) {
-//    ImageLoader.displayImage(imageView.context, if (!TextUtils.isEmpty(url)) url else null, imageView, timeStamp)
+    ImageLoader.displayImage(
+        imageView.context,
+        if (!TextUtils.isEmpty(url)) url else null,
+        imageView,
+        timeStamp
+    )
 }
 
 /**
@@ -104,7 +111,7 @@ fun setImageUri(imageView: ImageView, url: String, timeStamp: Long) {
  */
 @BindingAdapter(value = ["app:ivHeadUrl", "app:ivTimeStamp"], requireAll = false)
 fun setImageHeadUri(imageView: ImageView, url: String, timeStamp: Long) {
-//    ImageLoader.displayHeadImage(imageView.context, url, imageView)
+    ImageLoader.displayHeadImage(imageView.context, url, imageView)
 }
 
 /**

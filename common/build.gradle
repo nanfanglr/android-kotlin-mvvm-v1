@@ -41,6 +41,10 @@ dependencies {
     api project(':retrofit2')
     implementation projectDependencies.recyclerview
 
+    //glide
+    implementation projectDependencies.glideImageLoading
+    kapt projectDependencies.glideAnnotationProcessor
+
     //BaseRecyclerViewAdapterHelper
     api projectDependencies.BaseRecyclerViewAdapterHelper
     //SmartRefreshLayout

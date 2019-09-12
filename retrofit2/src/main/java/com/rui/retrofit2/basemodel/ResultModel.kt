@@ -9,18 +9,4 @@ class ResultModel<T> : BaseResultModel() {
 
     var data: List<T> = ArrayList()
 
-    var pageData: PageData<T> = PageData()
-
-//    fun getData(): List<*> {
-//        return data
-//    }
-//
-//    fun setData(data: List<*>) {
-//        this.data = data
-//    }
-
-    class PageData<T> {
-        var list: List<T> = ArrayList()
-    }
-
 }

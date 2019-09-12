@@ -81,9 +81,6 @@ open abstract class BaseLazyVMFragment<DB : ViewDataBinding, VM : BaseViewModel>
 
     private fun lazyFetchDataIfPrepared() {
         // 用户可见fragment && 没有加载过数据 && 视图已经准备完毕
-        Timber.d("---------->userVisibleHint=${userVisibleHint}")
-        Timber.d("---------->!isViewPrepared=${!hasFetchData}")
-        Timber.d("---------->isViewPrepared=${isViewPrepared}")
         if (userVisibleHint && !hasFetchData && isViewPrepared) {
             hasFetchData = true
             lazyFetchData()

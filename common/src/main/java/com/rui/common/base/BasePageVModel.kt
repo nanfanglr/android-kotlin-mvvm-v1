@@ -6,7 +6,6 @@ import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
 import com.rui.mvvm.network.ApiErro.ApiErrorHelper
 import com.rui.retrofit2.basemodel.BaseModel
-import timber.log.Timber
 
 /**
  *Created by rui on 2019/8/8
@@ -46,7 +45,6 @@ abstract class BasePageVModel<ITEM:BaseModel>(app: BaseApplication) : BaseListVM
                         } else {
                             items.addAll(it.data)
                         }
-                        Timber.d("-------->item.size=${it.data.size}")
                         total.set(it.total)
                         sumPage = it.getSumPage(ConstantVal.LIMIT)
                         page++
