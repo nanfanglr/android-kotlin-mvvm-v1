@@ -115,7 +115,7 @@ abstract class BasePageVMActivity<
     /**
      * 初始化列表相关的view及适配器
      */
-    protected fun initRV() {
+    protected open fun initRV() {
         recyclerView.let {
             adapter.setNewData(viewModel.items as List<Nothing>?)
             it.layoutManager = layoutManager

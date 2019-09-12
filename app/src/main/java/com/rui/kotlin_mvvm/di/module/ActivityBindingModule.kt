@@ -15,6 +15,7 @@
  */
 package com.rui.kotlin_mvvm.di.module
 
+import com.rui.kotlin_mvvm.ui.EditImagesActivity
 import com.rui.kotlin_mvvm.ui.LoginActivity
 import com.rui.kotlin_mvvm.ui.MainActivity
 import com.rui.kotlin_mvvm.ui.ProductDtlActivity
@@ -46,5 +47,8 @@ abstract class ActivityBindingModule {
     @ContributesAndroidInjector(modules = [ProductDtlModule::class])
     internal abstract fun productDtlActivity(): ProductDtlActivity
 
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [EditImagesModule::class])
+    internal abstract fun editImagesActivity(): EditImagesActivity
 
 }

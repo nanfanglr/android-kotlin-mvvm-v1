@@ -9,7 +9,6 @@ import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
 import com.rui.mvvm.network.ApiErro.ApiErrorHelper
 import com.rui.mvvm.vmodel.BaseViewModel
-import com.rui.retrofit2.basemodel.BaseModel
 import com.rui.retrofit2.basemodel.ResultModel
 import io.reactivex.Single
 import io.reactivex.SingleTransformer
@@ -19,7 +18,7 @@ import io.reactivex.schedulers.Schedulers
 /**
  *Created by rui on 2019/8/8
  */
-abstract class BaseListVModel<ITEM : BaseModel>(app: BaseApplication) : BaseViewModel(app) {
+abstract class BaseListVModel<ITEM >(app: BaseApplication) : BaseViewModel(app) {
     /**
      * 数据集
      */

@@ -123,12 +123,12 @@ public class HeadBar extends RelativeLayout {
         return (int) (spValue * fontScale + 0.5f);
     }
 
-    public void SetIvRightOnclickListener(OnClickListener listener) {
+    public void setIvRightOnclickListener(OnClickListener listener) {
         if (ivRight.getVisibility() == VISIBLE)
             ivRight.setOnClickListener(listener);
     }
 
-    public void SetTvRightOnclickListener(OnClickListener listener) {
+    public void setTvRightOnclickListener(OnClickListener listener) {
         if (tvRight.getVisibility() == VISIBLE)
             tvRight.setOnClickListener(listener);
     }
@@ -139,12 +139,12 @@ public class HeadBar extends RelativeLayout {
      *
      * @param listener
      */
-    public void SetBtnLeftOnClickListener(OnClickListener listener) {
+    public void setBtnLeftOnClickListener(OnClickListener listener) {
         if (tvLeft.getVisibility() == VISIBLE)
             tvLeft.setOnClickListener(listener);
     }
 
-    public void SetTvCenterOnClickListener(OnClickListener listener) {
+    public void setTvCenterOnClickListener(OnClickListener listener) {
         if (tvCenter.getVisibility() == VISIBLE)
             tvCenter.setOnClickListener(listener);
     }

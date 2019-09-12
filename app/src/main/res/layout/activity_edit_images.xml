@@ -1,8 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.EditImagesActivity">
 
-</LinearLayout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="headAdapter"
+            type="com.rui.kotlin_mvvm.ui.adapter.ImagePagerAdapter" />
+
+        <variable
+            name="adapter"
+            type="com.rui.kotlin_mvvm.ui.adapter.EditImagesAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.rui.kotlin_mvvm.di.vmodel.EditImagesVModel" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.rui.viewkit.HeadBar
+            android:id="@+id/headBar_main"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@color/colorhead"
+            app:leftImgRes="@drawable/black_return"
+            app:rightText="保存"
+            app:rightTextColor="@android:color/black"
+            app:titleText="商品图上传"
+            app:tvRightVisible="@{viewModel.isShowSave}" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/headBar_main">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusableInTouchMode="true">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/pager_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:vpAdapter="@{headAdapter}"
+                    app:vpCurrentPos="@{viewModel.currentPostion}" />
+
+                <TextView
+                    android:id="@+id/tv_num_main"
+                    android:layout_width="52dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@+id/pager_main"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_bg_rectangular"
+                    android:gravity="center"
+                    android:text='@{String.format("%d/%d",viewModel.currentPostion+1,viewModel.items.size())}'
+                    android:textColor="#ffffff"
+                    android:visibility="@{viewModel.items.size()==0?View.GONE:View.VISIBLE}" />
+
+                <TextView
+                    android:id="@+id/tv_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/pager_main"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="长按图片可以拖动排序"
+                    android:textColor="#999999"
+                    android:textSize="13sp" />
+
+
+                <ImageView
+                    android:id="@+id/iv_del"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/del"
+                    android:onClickListener="@{()->viewModel.deleteItem(viewModel.currentPostion)}"
+                    android:visibility="@{viewModel.items.size()==0?View.GONE:View.VISIBLE}" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_small_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_tip"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:clipToPadding="true"
+                    android:paddingBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/tv_tip_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="150dp"
+                    android:text="请添加图片"
+                    android:textSize="24dp"
+                    android:visibility="@{viewModel.items.size()>0?View.GONE:View.VISIBLE}" />
+            </RelativeLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

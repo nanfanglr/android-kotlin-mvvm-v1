@@ -11,7 +11,7 @@ public class ViewKitBinding {
     @BindingAdapter("app:tvRightOnclickListener")
     public static void setTvRightOnclickListener(HeadBar headBar, View.OnClickListener listener) {
         if (listener != null) {
-            headBar.SetTvRightOnclickListener(listener);
+            headBar.setTvRightOnclickListener(listener);
         }
     }
 

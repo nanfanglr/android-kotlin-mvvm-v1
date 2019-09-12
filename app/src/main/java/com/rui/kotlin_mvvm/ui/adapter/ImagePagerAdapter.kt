@@ -1,5 +1,6 @@
 package com.rui.kotlin_mvvm.ui.adapter
 
+
 import android.support.v4.app.FragmentActivity
 import android.support.v4.view.PagerAdapter
 import android.view.View
@@ -8,8 +9,9 @@ import android.widget.ImageView
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.rui.common.ImageLoader
+import com.rui.kotlin_mvvm.APPValue
 import com.rui.kotlin_mvvm.model.ColorModel
-import java.util.*
+import com.rui.kotlin_mvvm.ui.EditImagesActivity
 import javax.inject.Inject
 
 /**
@@ -18,7 +20,7 @@ import javax.inject.Inject
 class ImagePagerAdapter : PagerAdapter {
     @Inject
     lateinit var activity: FragmentActivity
-    private var imgs: ArrayList<LocalMedia>? = null
+    private var imgs: ArrayList<LocalMedia>
     private var rvItemPos = -1
     lateinit var colorModel: ColorModel
     private var disableClick: Boolean = false
@@ -49,8 +51,10 @@ class ImagePagerAdapter : PagerAdapter {
         val imageView = ImageView(container.context)
         if (!disableClick)
             imageView.setOnClickListener { v ->
-                //            EditImagesActivity.actionStart(activity, imgs, position, rvItemPos
-                //                    , rvItemPos == -1 ? APPValue.HEAD_REQUESTCODE : APPValue.ITEM_REQUESTCODE);
+                EditImagesActivity.actionStart(
+                    activity, imgs, position, rvItemPos
+                    , if (rvItemPos == -1) APPValue.HEAD_REQUESTCODE else APPValue.ITEM_REQUESTCODE
+                )
             }
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         val path = localMedia?.compressPath

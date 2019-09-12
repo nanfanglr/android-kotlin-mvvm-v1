@@ -32,7 +32,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import javax.inject.Inject
 
 
-
 class ProductDtlActivity : BasePageVMActivity<
         ActivityProductDtlBinding,
         ProductDtlVModel,
