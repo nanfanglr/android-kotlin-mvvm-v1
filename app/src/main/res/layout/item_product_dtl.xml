@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="adapter"
+            type="com.rui.kotlin_mvvm.ui.ImagePagerAdapter" />
+
+        <variable
+            name="itemViewModel"
+            type="com.rui.kotlin_mvvm.model.ColorModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rl_color_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#e4e4e4" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view">
+
+            <TextView
+                android:id="@+id/upload_color"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:text='@{String.format("颜色-%s",itemViewModel.color_NAME)}'
+                android:textColor="#333333"
+                android:textSize="15sp"
+                tools:text="颜色图-红色" />
+
+            <TextView
+                android:id="@+id/tv_add_color"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:drawableRight="@drawable/right_arrow"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:text="点击添加颜色图"
+                android:textColor="#999999"
+                android:textSize="15sp"
+                android:visibility="@{itemViewModel.localCLImgs.size()==0?View.VISIBLE:View.GONE}" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_color"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:layout_below="@+id/view">
+
+            <ImageView
+                android:id="@+id/small_color"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40dp"
+                android:visibility="@{itemViewModel.localCLImgs.size()==0?View.GONE:View.VISIBLE}"
+                app:ivTimeStamp="@{itemViewModel.loadTime}"
+                app:ivUrl="@{itemViewModel.clImgUrl}" />
+
+            <ImageView
+                android:id="@+id/iv_rightarrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/right_arrow"
+                android:visibility="@{itemViewModel.localCLImgs.size()==0?View.VISIBLE:View.GONE}" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rl_color"
+            android:background="#e4e4e4" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/item_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/view2"
+            app:vpAdapter="@{adapter}"
+            app:vpCurrentPos="@{itemViewModel.currentPosition}" />
+
+
+        <RelativeLayout
+            android:id="@+id/rl_camera"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/view2">
+
+            <ImageView
+                android:id="@+id/item_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/camera"
+                android:visibility="@{itemViewModel.localZSImgs.size()==0?View.VISIBLE:View.GONE}" />
+
+            <TextView
+                android:id="@+id/tv_item_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_camera"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="点击添加商品详情图片"
+                android:visibility="@{itemViewModel.localZSImgs.size()==0?View.VISIBLE:View.GONE}" />
+
+            <ImageView
+                android:id="@+id/item_camera_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/camera"
+                android:visibility="@{itemViewModel.localZSImgs.size()==0?View.GONE:View.VISIBLE}"
+                tools:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_item_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shape_bg_rectangular"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="2dp"
+                android:text='@{String.format("%d/%d",itemViewModel.currentPosition+1,itemViewModel.localZSImgs.size())}'
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                android:visibility="@{itemViewModel.localZSImgs.size()==0?View.GONE:View.VISIBLE}" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</layout>

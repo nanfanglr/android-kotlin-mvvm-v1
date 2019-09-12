@@ -40,7 +40,7 @@ object ImageLoader {
      * @param url
      * @param imageView
      */
-    fun displayImage(context: Context, url: String, imageView: ImageView) {
+    fun displayImage(context: Context, url: String?, imageView: ImageView) {
         displayImageBase(context, url, imageView, defualtOption)
     }
 

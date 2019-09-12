@@ -1,5 +1,6 @@
 package com.rui.kotlin_mvvm.ui
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.databinding.ObservableList
 import android.os.Bundle
@@ -11,10 +12,13 @@ import com.rui.common.adapter.BaseRvAdapter
 import com.rui.common.base.BasePageVMFragment
 import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.FragmentProductImgBinding
+import com.rui.kotlin_mvvm.di.vmodel.MainVModel
 import com.rui.kotlin_mvvm.di.vmodel.ProductImgFgVModel
 import com.rui.kotlin_mvvm.model.ProductModel
 import com.rui.mvvm.RvOnListChangedCallback
+import com.rui.toolkit.toast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import io.reactivex.disposables.Disposable
 import timber.log.Timber
 
 /**
@@ -62,10 +66,35 @@ class ProductImgFragment : BasePageVMFragment<
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initVM()
+        initOB()
+        initRVClick()
     }
 
     private fun initVM() {
         viewModel.dataType = arguments?.getString("dataType")
+    }
+
+    private lateinit var subscribe: Disposable
+    /**
+     * fragment所在activity的的viewmodel
+     */
+    private lateinit var mainViewModel: MainVModel
+
+    private fun initOB() {
+        mainViewModel =
+            ViewModelProviders.of(activity!!, viewModelFactory).get(MainVModel::class.java)
+        subscribe = mainViewModel.subject.subscribe { s ->
+            //收到搜索事件
+            viewModel.setSearchKeyWord(s)
+        }
+    }
+
+    private fun initRVClick() {
+        adapter.setOnItemClickListener { adapter, _, position ->
+            val clickItem = adapter.data[position] as ProductModel
+            context?.toast("点击了$position")
+            ProductDtlActivity.actionStart(activity, clickItem.prod_ID, null)
+        }
     }
 
 }

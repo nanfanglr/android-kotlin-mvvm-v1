@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.ProductDtlActivity">
+    <data>
+        <import type="android.view.View" />
 
-</LinearLayout>
+        <variable
+            name="viewModel"
+            type="com.rui.kotlin_mvvm.di.vmodel.ProductDtlVModel" />
+
+        <variable
+            name="layoutManager"
+            type="android.support.v7.widget.RecyclerView.LayoutManager" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rl_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.rui.viewkit.HeadBar
+            android:id="@+id/headBar"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@color/colorhead"
+            app:leftImgRes="@drawable/black_return"
+            app:rightText="提交"
+            app:rightTextColor="@android:color/black"
+            app:titleText="商品图上传"
+            app:tvRightOnclickListener="@{()->viewModel.saveProductImg()}"
+            app:tvRightVisible="@{viewModel.isShowCommit}" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/headBar"
+            android:nestedScrollingEnabled="false" />
+
+
+    </RelativeLayout>
+</layout>

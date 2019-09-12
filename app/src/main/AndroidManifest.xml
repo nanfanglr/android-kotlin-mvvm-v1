@@ -22,7 +22,9 @@
         <activity android:name=".ui.MultipleRvItemActivity" />
         <activity android:name=".ui.EditImagesActivity" />
         <activity android:name=".ui.ProductDtlActivity" />
-        <activity android:name=".ui.MainActivity" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
