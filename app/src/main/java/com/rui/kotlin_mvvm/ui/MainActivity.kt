@@ -6,6 +6,7 @@ import android.view.inputmethod.InputMethodManager
 import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.ActivityMainBinding
 import com.rui.kotlin_mvvm.di.vmodel.MainVModel
+import com.rui.kotlin_mvvm.ui.adapter.FgPagerAdapter
 import com.rui.mvvm.EventObserver
 import com.rui.mvvm.activity.BaseDaggerActivity
 import javax.inject.Inject

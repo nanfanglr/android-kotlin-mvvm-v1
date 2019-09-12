@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui
+package com.rui.kotlin_mvvm.ui.adapter
 
 import android.support.v4.app.FragmentActivity
 import android.support.v4.view.PagerAdapter

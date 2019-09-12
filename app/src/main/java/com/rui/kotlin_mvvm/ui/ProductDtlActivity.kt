@@ -21,6 +21,8 @@ import com.rui.kotlin_mvvm.APPValue
 import com.rui.kotlin_mvvm.databinding.ActivityProductDtlBinding
 import com.rui.kotlin_mvvm.databinding.RvHeadBinding
 import com.rui.kotlin_mvvm.di.vmodel.ProductDtlVModel
+import com.rui.kotlin_mvvm.ui.adapter.ImagePagerAdapter
+import com.rui.kotlin_mvvm.ui.adapter.ProductImgAdapter
 import com.rui.mvvm.RvOnListChangedCallback
 import com.rui.mvvm.VPOnListChangedCallback
 import com.rui.toolkit.DisplayUtils

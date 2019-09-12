@@ -9,7 +9,7 @@
 
         <variable
             name="adapter"
-            type="com.rui.kotlin_mvvm.ui.ImagePagerAdapter" />
+            type="com.rui.kotlin_mvvm.ui.adapter.ImagePagerAdapter" />
 
         <variable
             name="itemViewModel"

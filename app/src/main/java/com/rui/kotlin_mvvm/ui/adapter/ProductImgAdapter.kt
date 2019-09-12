@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui
+package com.rui.kotlin_mvvm.ui.adapter
 
 import android.databinding.ObservableList
 import android.support.v4.app.FragmentActivity
@@ -19,7 +19,7 @@ import javax.inject.Inject
  */
 class ProductImgAdapter @Inject constructor() :
     BaseRvAdapter<ColorModel>(R.layout.item_product_dtl) {
-    
+
     @Inject
     lateinit var activity: FragmentActivity
 
@@ -29,7 +29,8 @@ class ProductImgAdapter @Inject constructor() :
             .addOnClickListener(R.id.item_camera_right)
 
         val binding = helper.getBinding() as ItemProductDtlBinding
-        val itemImageAdapter = ImagePagerAdapter(activity, helper.adapterPosition, item)
+        val itemImageAdapter =
+            ImagePagerAdapter(activity, helper.adapterPosition, item)
         binding.adapter = itemImageAdapter
         val vpOnListChangedCallback = VPOnListChangedCallback<ObservableList<Any>>()
         vpOnListChangedCallback.adapter = itemImageAdapter

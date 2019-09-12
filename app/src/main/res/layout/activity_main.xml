@@ -11,7 +11,7 @@
 
         <variable
             name="fgPagerAdapter"
-            type="com.rui.kotlin_mvvm.ui.FgPagerAdapter" />
+            type="com.rui.kotlin_mvvm.ui.adapter.FgPagerAdapter" />
 
         <variable
             name="viewModel"
