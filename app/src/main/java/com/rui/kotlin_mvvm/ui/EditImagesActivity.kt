@@ -17,6 +17,7 @@ import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.rui.common.base.BasePageVMActivity
 import com.rui.kotlin_mvvm.APPValue
+import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.ActivityEditImagesBinding
 import com.rui.kotlin_mvvm.di.vmodel.EditImagesVModel
 import com.rui.kotlin_mvvm.ui.adapter.EditImagesAdapter
@@ -70,7 +71,7 @@ class EditImagesActivity : BasePageVMActivity<
     override fun getVMClass(): Class<EditImagesVModel> = EditImagesVModel::class.java
 
     override fun getLayoutID(savedInstanceState: Bundle?): Int =
-        com.rui.kotlin_mvvm.R.layout.activity_edit_images
+        R.layout.activity_edit_images
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,8 +83,8 @@ class EditImagesActivity : BasePageVMActivity<
     private fun initVM() {
         val imgData = intent.getParcelableArrayListExtra<LocalMedia>("items") as List<LocalMedia>
         viewModel.items.addAll(imgData)
-        val currentPostion = intent.getIntExtra("currentPostion", 0)
-        viewModel.currentPostion.set(currentPostion)
+        val currentPosition = intent.getIntExtra("currentPostion", 0)
+        viewModel.currentPostion.set(currentPosition)
         val rvItemPosition = intent.getIntExtra("rvItemPosition", -1)
         viewModel.rvItemPosition.set(rvItemPosition)
     }
@@ -143,7 +144,7 @@ class EditImagesActivity : BasePageVMActivity<
         val itemTouchHelper = ItemTouchHelper(itemDragAndSwipeCallback)
         itemTouchHelper.attachToRecyclerView(binding.rvSmallImage)
         //开启拖拽
-        adapter.enableDragItem(itemTouchHelper, com.rui.kotlin_mvvm.R.id.iv_small, true)
+        adapter.enableDragItem(itemTouchHelper, R.id.iv_small, true)
         adapter.setOnItemDragListener(this)
         setFootView()
     }
@@ -160,7 +161,7 @@ class EditImagesActivity : BasePageVMActivity<
         if (footView == null) {
             footView =
                 LayoutInflater.from(applicationContext)
-                    .inflate(com.rui.kotlin_mvvm.R.layout.layout_foot_small, null)
+                    .inflate(R.layout.layout_foot_small, null)
             footView?.setOnClickListener {
                 showSelectDialog(
                     APPValue.RESULTCODE_DT_TAKEPHOTO,
@@ -183,11 +184,11 @@ class EditImagesActivity : BasePageVMActivity<
     private fun showSelectDialog(requestCode: Int, rest: Int) {
         PhotoDialog.createDialog(this, true) { v1: View, position: Int ->
             when (v1.id) {
-                com.rui.kotlin_mvvm.R.id.takePhoto -> openCamera(requestCode)
-                com.rui.kotlin_mvvm.R.id.choosePhoto -> openPicSelector(requestCode, rest)
-                com.rui.kotlin_mvvm.R.id.chooseVideo -> {
+                R.id.takePhoto -> openCamera(requestCode)
+                R.id.choosePhoto -> openPicSelector(requestCode, rest)
+                R.id.chooseVideo -> {
                 }
-                com.rui.kotlin_mvvm.R.id.btn_cancel -> {
+                R.id.btn_cancel -> {
                 }
             }
         }

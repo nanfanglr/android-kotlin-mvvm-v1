@@ -9,3 +9,7 @@ import android.widget.Toast
 fun Context.toast(message: CharSequence, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, message, duration).show()
 }
+
+fun Context.dip2px(dpValue: Float): Int {
+    return (dpValue * resources.displayMetrics.density + 0.5f).toInt()
+}
