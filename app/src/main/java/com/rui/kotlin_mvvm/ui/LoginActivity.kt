@@ -23,22 +23,16 @@ class LoginActivity : BaseDaggerActivity<ActivityLoginBinding, LoginVModel>() {
     }
 
     private fun initEvent() {
-        binding.tvMultiple.setOnClickListener { v ->
-            startActivity(
-                Intent(
-                    this@LoginActivity,
-                    MultipleRvItemActivity::class.java
-                )
-            )
+        binding.tvMultiple.setOnClickListener {
+            startActivity(Intent(this, MultipleRvItemActivity::class.java))
         }
     }
 
     private fun initOB() {
         viewModel.initEvent()
         viewModel.loginSuccess.observe(this, EventObserver {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
-
         })
     }
 }

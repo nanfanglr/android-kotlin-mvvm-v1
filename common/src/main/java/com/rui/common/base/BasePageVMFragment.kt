@@ -159,5 +159,4 @@ abstract class BasePageVMFragment<
         })
     }
 
-
 }

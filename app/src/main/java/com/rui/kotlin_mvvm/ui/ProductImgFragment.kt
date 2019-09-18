@@ -99,4 +99,9 @@ class ProductImgFragment : BasePageVMFragment<
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        subscribe.dispose()
+    }
+
 }

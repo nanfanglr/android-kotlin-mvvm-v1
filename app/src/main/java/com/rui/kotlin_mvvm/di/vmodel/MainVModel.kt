@@ -9,8 +9,8 @@ import android.view.View
 import com.rui.kotlin_mvvm.ui.ProductImgFragment
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
-import com.rui.mvvm.vmodel.BaseViewModel
 import com.rui.mvvm.toast
+import com.rui.mvvm.vmodel.BaseViewModel
 import io.reactivex.subjects.Subject
 import javax.inject.Inject
 
@@ -71,7 +71,7 @@ class MainVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app) 
     /**
      * 清楚输入的搜索关键词
      */
-    fun clearkeyWord(view: View) {
+    fun clearKeyWord(view: View) {
         keyWord.set("")
         subject.onNext("")
     }
