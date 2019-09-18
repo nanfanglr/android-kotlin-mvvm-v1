@@ -25,7 +25,6 @@ class MainActivity : BaseDaggerActivity<ActivityMainBinding, MainVModel>() {
         initView()
         initVM()
         initOB()
-
     }
 
     private fun initView() {

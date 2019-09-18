@@ -3,7 +3,7 @@ package com.rui.mvvm.di.module
 import android.content.Context
 import android.databinding.ObservableList
 import android.support.v7.widget.LinearLayoutManager
-import com.rui.mvvm.RvOnListChangedCallback
+import com.rui.mvvm.binding.RvOnListChangedCallback
 import dagger.Module
 import dagger.Provides
 
@@ -18,6 +18,7 @@ class LLModule {
     internal fun providesLayoutManager(context: Context): LinearLayoutManager = LinearLayoutManager(context)
 
     @Provides
-    internal fun providesRvOnListChangeCallback(): RvOnListChangedCallback<ObservableList<Any>> = RvOnListChangedCallback()
+    internal fun providesRvOnListChangeCallback(): RvOnListChangedCallback<ObservableList<Any>> =
+        RvOnListChangedCallback()
 
 }

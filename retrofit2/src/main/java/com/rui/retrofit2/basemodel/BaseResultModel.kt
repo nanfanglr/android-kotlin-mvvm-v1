@@ -33,8 +33,6 @@ open class BaseResultModel : BaseModel() {
     }
 
     companion object {
-
-
         /**
          * url : null
          * pageCount : 0

@@ -38,6 +38,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':mvvm')
+    implementation project(':toolkit')
     api project(':retrofit2')
     implementation projectDependencies.recyclerview
 

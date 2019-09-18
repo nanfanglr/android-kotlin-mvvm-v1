@@ -9,7 +9,7 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.rui.kotlin_mvvm.di.vmodel.ProductDtlVModel
 import com.rui.kotlin_mvvm.model.ColorModel
 import com.rui.kotlin_mvvm.ui.ProductDtlActivity
-import com.rui.mvvm.VPOnListChangedCallback
+import com.rui.mvvm.binding.VPOnListChangedCallback
 import com.rui.mvvm.di.module.LLModule
 import com.rui.mvvm.di.module.ObservableModule
 import com.rui.mvvm.di.scopes.ActivityContext

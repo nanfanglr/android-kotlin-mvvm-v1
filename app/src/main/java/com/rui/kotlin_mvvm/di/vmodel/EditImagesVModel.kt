@@ -17,6 +17,7 @@ import javax.inject.Inject
  */
 class EditImagesVModel @Inject constructor(app: BaseApplication) :
     BaseListVModel<LocalMedia>(app) {
+
     override fun getDataOB(): Single<ResultModel<LocalMedia>> {
         return Single.never()
     }

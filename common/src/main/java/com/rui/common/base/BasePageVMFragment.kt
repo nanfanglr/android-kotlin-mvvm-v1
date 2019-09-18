@@ -14,7 +14,7 @@ import com.rui.common.ConstantVal
 import com.rui.common.R
 import com.rui.common.databinding.EmptyViewVmBinding
 import com.rui.mvvm.EventObserver
-import com.rui.mvvm.RvOnListChangedCallback
+import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.fragment.BaseDaggerFragment
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
@@ -148,7 +148,7 @@ abstract class BasePageVMFragment<
         adapter.emptyView = emptyView
     }
 
-    override fun setEorrorHint() {
+    override fun setErrorHint() {
         viewModel.dataLoadingError.observe(this, EventObserver {
             if (adapter.itemCount > 0) {
                 Toast.makeText(activity, it, Toast.LENGTH_LONG).show()

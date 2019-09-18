@@ -3,7 +3,6 @@ package com.rui.mvvm.fragment
 import android.app.ProgressDialog
 import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import com.rui.mvvm.BR
@@ -16,7 +15,6 @@ import timber.log.Timber
  */
 open abstract class BaseLazyVMFragment<DB : ViewDataBinding, VM : BaseViewModel>
     : BaseDBFragment<DB>() {
-
     /**
      * 标识fragment视图已经初始化完毕
      */
@@ -98,29 +96,19 @@ open abstract class BaseLazyVMFragment<DB : ViewDataBinding, VM : BaseViewModel>
      */
     protected open fun setLoadingBar() {
         viewModel.dataLoading.observe(this, EventObserver {
-            if (it) showProcessBar(getLoadingText()) else closeDialog()
+            if (it) showProcessBar(getLoadingText()) else _processBar.cancel()
         })
     }
 
     protected open fun showProcessBar(message: String) {
-        if (_processBar.isShowing()) {
+        if (_processBar.isShowing) {
             _processBar.dismiss()
         }
-
-        if (TextUtils.isEmpty(message)) {
-            val str = "正在获取信息，请稍候！"
-            _processBar.setMessage(str)
-        } else {
-            _processBar.setMessage(message)
-        }
-        _processBar.show()
-        _processBar.setCanceledOnTouchOutside(false)
-        _processBar.setCancelable(true)
-    }
-
-    private fun closeDialog() {
-        if (null != _processBar) {
-            _processBar.cancel()
+        with(_processBar) {
+            setMessage(message)
+            show()
+            setCanceledOnTouchOutside(false)
+            setCancelable(true)
         }
     }
 
@@ -130,18 +118,17 @@ open abstract class BaseLazyVMFragment<DB : ViewDataBinding, VM : BaseViewModel>
      * @return
      */
     protected open fun getLoadingText(): String {
-        return ""
+        return "正在获取信息，请稍候！"
     }
 
     /**
      * 加载错误统一提示，如果不需要就重写此方法
      */
-    protected open fun setEorrorHint() {
+    protected open fun setErrorHint() {
         viewModel.dataLoadingError.observe(this, EventObserver {
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
         })
     }
-
 
 }
 

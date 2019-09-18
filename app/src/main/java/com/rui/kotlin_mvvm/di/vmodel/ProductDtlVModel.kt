@@ -9,7 +9,7 @@ import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
 import com.rui.mvvm.network.ApiErro.ApiErrorHelper
 import com.rui.retrofit2.basemodel.ResultModel
-import com.rui.toolkit.toast
+import com.rui.mvvm.toast
 import io.reactivex.Single
 import timber.log.Timber
 import javax.inject.Inject

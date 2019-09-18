@@ -14,7 +14,7 @@ import com.rui.mvvm.Event
 import com.rui.mvvm.network.ApiErro.ApiErrorHelper
 import com.rui.mvvm.vmodel.BaseViewModel
 import com.rui.toolkit.Preference
-import com.rui.toolkit.toast
+import com.rui.mvvm.toast
 import javax.inject.Inject
 
 

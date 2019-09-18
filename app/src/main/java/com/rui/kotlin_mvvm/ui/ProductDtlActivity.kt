@@ -18,15 +18,16 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.tools.PictureFileUtils
 import com.rui.common.base.BasePageVMActivity
 import com.rui.kotlin_mvvm.APPValue
+import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.ActivityProductDtlBinding
 import com.rui.kotlin_mvvm.databinding.RvHeadBinding
 import com.rui.kotlin_mvvm.di.vmodel.ProductDtlVModel
 import com.rui.kotlin_mvvm.ui.adapter.ImagePagerAdapter
 import com.rui.kotlin_mvvm.ui.adapter.ProductImgAdapter
-import com.rui.mvvm.RvOnListChangedCallback
-import com.rui.mvvm.VPOnListChangedCallback
-import com.rui.toolkit.DisplayUtils
-import com.rui.toolkit.toast
+import com.rui.mvvm.binding.RvOnListChangedCallback
+import com.rui.mvvm.binding.VPOnListChangedCallback
+import com.rui.mvvm.screenWith
+import com.rui.mvvm.toast
 import com.rui.viewkit.PhotoDialog
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import javax.inject.Inject
@@ -40,14 +41,16 @@ class ProductDtlActivity : BasePageVMActivity<
         RvOnListChangedCallback<ObservableList<Any>>
         >() {
 
-    companion object{
+    companion object {
         fun actionStart(context: Context?, prodId: Int, prodNum: String?) {
-            val intent = Intent(context, ProductDtlActivity::class.java)
-            intent.putExtra("prodId", prodId)
-            intent.putExtra("prodNum", prodNum)
+            //apply函数中使用this，并返回自己
+            //also函数中使用it，并返回自己
+            val intent = Intent(context, ProductDtlActivity::class.java).apply {
+                putExtra("prodId", prodId)
+                putExtra("prodNum", prodNum)
+            }
             context?.startActivity(intent)
         }
-
     }
 
     @Inject
@@ -65,7 +68,7 @@ class ProductDtlActivity : BasePageVMActivity<
     override fun getVMClass(): Class<ProductDtlVModel> = ProductDtlVModel::class.java
 
     override fun getLayoutID(savedInstanceState: Bundle?): Int =
-        com.rui.kotlin_mvvm.R.layout.activity_product_dtl
+        R.layout.activity_product_dtl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,10 +95,10 @@ class ProductDtlActivity : BasePageVMActivity<
         adapter.addHeaderView(getRVHeader())
 
         //列表item的控件点击事件处理
-        adapter.setOnItemChildClickListener { adapter, view, position ->
+        adapter.setOnItemChildClickListener { _, view, position ->
             when (view.id) {
                 //点击添加item详情图
-                com.rui.kotlin_mvvm.R.id.item_camera_right, com.rui.kotlin_mvvm.R.id.item_camera -> {
+                R.id.item_camera_right, R.id.item_camera -> {
                     val localZSImgs = viewModel.items[position].localZSImgs
                     showSelectDialog(
                         APPValue.RESULTCODE_ITEM_TAKEPHOTO,
@@ -103,7 +106,7 @@ class ProductDtlActivity : BasePageVMActivity<
                     )
                 }
                 //点击添加item颜色图
-                com.rui.kotlin_mvvm.R.id.rl_color -> showSelectDialog(
+                R.id.rl_color -> showSelectDialog(
                     APPValue.RESULTCODE_COLOR_TAKEPHOTO,
                     1,
                     true
@@ -118,7 +121,7 @@ class ProductDtlActivity : BasePageVMActivity<
     private fun getRVHeader(): View {
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(applicationContext),
-            com.rui.kotlin_mvvm.R.layout.rv_head,
+            R.layout.rv_head,
             null,
             false
         ) as RvHeadBinding
@@ -132,23 +135,18 @@ class ProductDtlActivity : BasePageVMActivity<
                 APPValue.RESULTCODE_HEAD_TAKEPHOTO,
                 APPValue.MAX_IMG_NUM - viewModel.headImgs.size,
                 true
-            );
+            )
         }
         binding.ivCameraRight.setOnClickListener {
             showSelectDialog(
                 APPValue.RESULTCODE_HEAD_TAKEPHOTO,
                 APPValue.MAX_IMG_NUM - viewModel.headImgs.size,
                 true
-            );
+            )
         }
 
-        val rlImgsParams = binding.rlImg.layoutParams
-        rlImgsParams.height = DisplayUtils.getScreenWidthAndHight(this.applicationContext)[0]
-        binding.rlImg.layoutParams = rlImgsParams
-
-        val layoutParams = binding.pager.layoutParams
-        layoutParams.height = DisplayUtils.getScreenWidthAndHight(this.applicationContext)[0]
-        binding.pager.layoutParams = layoutParams
+        binding.rlImg.layoutParams.height = screenWith()
+        binding.pager.layoutParams.height = screenWith()
 
         binding.pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
@@ -165,7 +163,7 @@ class ProductDtlActivity : BasePageVMActivity<
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
-        return binding.getRoot()
+        return binding.root
     }
 
 
@@ -176,11 +174,13 @@ class ProductDtlActivity : BasePageVMActivity<
         }
         PhotoDialog.createDialog(this, hideVideo) { v, position ->
             when (v.id) {
-                com.rui.kotlin_mvvm.R.id.takePhoto -> openCamera(requestCode)
-                com.rui.kotlin_mvvm.R.id.choosePhoto -> openPicSelector(requestCode, rest)
-                com.rui.kotlin_mvvm.R.id.chooseVideo -> {
+                R.id.takePhoto -> openCamera(requestCode)
+                R.id.choosePhoto -> openPicSelector(requestCode, rest)
+                R.id.chooseVideo -> {
+                    toast("去选择视频")
                 }
-                com.rui.kotlin_mvvm.R.id.btn_cancel -> {
+                R.id.btn_cancel -> {
+                    toast("取消了")
                 }
             }
         }
@@ -248,47 +248,55 @@ class ProductDtlActivity : BasePageVMActivity<
                 //头部主图选择相册及相机拍照回调
                 APPValue.RESULTCODE_HEAD_TAKEPHOTO -> {
                     val selectList = PictureSelector.obtainMultipleResult(data)
-                    viewModel.headImgs.addAll(selectList)
-                    viewModel.headCurrentPos.set(viewModel.headImgs.size - 1)
+                    //with函数不能进行空检查
+                    with(viewModel) {
+                        headImgs.addAll(selectList)
+                        headCurrentPos.set(viewModel.headImgs.size - 1)
+                    }
                 }
                 //头部主图从编辑页面返回，保存返回结果
                 APPValue.HEAD_REQUESTCODE -> {
                     data?.run {
                         val imgData =
                             getParcelableArrayListExtra<Parcelable>("items") as ArrayList<LocalMedia>
-                        val currentPostion = getIntExtra("currentPostion", 0)
-                        viewModel.headImgs.clear()//这种全部刷新的方式还可以尝试用DiffUtil进行优化
-                        viewModel.headImgs.addAll(imgData)
-                        viewModel.headCurrentPos.set(currentPostion)
+                        val currentPosition = getIntExtra("currentPostion", 0)
+                        viewModel.run {
+                            headImgs.clear()//这种全部刷新的方式还可以尝试用DiffUtil进行优化
+                            headImgs.addAll(imgData)
+                            headCurrentPos.set(currentPosition)
+                        }
                     }
-
                 }
                 //列表颜色图选择相册和拍照回调
                 APPValue.RESULTCODE_COLOR_TAKEPHOTO -> {
                     val selectList = PictureSelector.obtainMultipleResult(data)
-                    val colorModel = viewModel.items[viewModel.rvClickPos.get()]
-                    colorModel.localCLImgs.clear()
-                    colorModel.localCLImgs.addAll(selectList)
-                    colorModel.clImgUrl.set(colorModel.clImgUrlStr)
+                    viewModel.items[viewModel.rvClickPos.get()].apply {
+                        localCLImgs.clear()
+                        localCLImgs.addAll(selectList)
+                        clImgUrl.set(clImgUrlStr)
+                    }
+
                 }
                 //列表点击item中间相机、右边相机选择相册及拍照回调
                 APPValue.RESULTCODE_ITEM_TAKEPHOTO -> {
                     val selectList = PictureSelector.obtainMultipleResult(data)
-                    val colorModel = viewModel.items[viewModel.rvClickPos.get()]
-                    colorModel.localZSImgs.addAll(selectList)
-                    colorModel.currentPosition.set(colorModel.localZSImgs.size - 1)
+                    viewModel.items[viewModel.rvClickPos.get()].run {
+                        localZSImgs.addAll(selectList)
+                        currentPosition.set(localZSImgs.size - 1)
+                    }
                 }
                 //列表从编辑页面返回，保存item后返回结果
                 APPValue.ITEM_REQUESTCODE -> {
                     data?.run {
                         val imgData =
                             getParcelableArrayListExtra<Parcelable>("items") as ArrayList<LocalMedia>
-                        val currentPostion = getIntExtra("currentPostion", 0)
-                        val rvItemPostion = getIntExtra("rvItemPosition", 0)
-                        val item = viewModel.items[rvItemPostion - 1]
-                        item.localZSImgs.clear()
-                        item.localZSImgs.addAll(imgData)
-                        item.currentPosition.set(currentPostion)
+                        val currentPosition = getIntExtra("currentPostion", 0)
+                        val rvItemPosition = getIntExtra("rvItemPosition", 0)
+                        viewModel.items[rvItemPosition - 1].run {
+                            localZSImgs.clear()
+                            localZSImgs.addAll(imgData)
+                            this.currentPosition.set(currentPosition)
+                        }
                     }
                 }
             }

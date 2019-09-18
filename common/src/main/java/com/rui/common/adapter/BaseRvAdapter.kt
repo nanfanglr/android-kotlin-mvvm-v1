@@ -26,7 +26,6 @@ open class BaseRvAdapter<T : BaseModel> constructor(@LayoutRes layoutResId: Int)
         return view
     }
 
-
     override fun convert(helper: BaseRvViewHolder, item: T) {
         item.arrayIndex = helper.layoutPosition
         val binding = helper.getBinding()

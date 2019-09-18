@@ -15,8 +15,8 @@ import com.rui.kotlin_mvvm.databinding.FragmentProductImgBinding
 import com.rui.kotlin_mvvm.di.vmodel.MainVModel
 import com.rui.kotlin_mvvm.di.vmodel.ProductImgFgVModel
 import com.rui.kotlin_mvvm.model.ProductModel
-import com.rui.mvvm.RvOnListChangedCallback
-import com.rui.toolkit.toast
+import com.rui.mvvm.binding.RvOnListChangedCallback
+import com.rui.mvvm.toast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import io.reactivex.disposables.Disposable
 import timber.log.Timber
@@ -34,9 +34,11 @@ class ProductImgFragment : BasePageVMFragment<
 
     companion object {
         fun newInstance(context: Context, dataType: String, title: String): ProductImgFragment {
-            val bundle = Bundle()
-            bundle.putString("dataType", dataType)
-            bundle.putString("title", title)
+            val bundle = Bundle().apply {
+                putString("dataType", dataType)
+                putString("title", title)
+            }
+
             return instantiate(
                 context,
                 ProductImgFragment::class.java.name,

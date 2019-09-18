@@ -1,4 +1,4 @@
-package com.rui.mvvm
+package com.rui.mvvm.binding
 
 import android.databinding.ObservableList
 import android.support.v7.widget.RecyclerView

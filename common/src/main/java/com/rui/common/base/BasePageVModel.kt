@@ -5,12 +5,11 @@ import com.rui.common.ConstantVal
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
 import com.rui.mvvm.network.ApiErro.ApiErrorHelper
-import com.rui.retrofit2.basemodel.BaseModel
 
 /**
  *Created by rui on 2019/8/8
  */
-abstract class BasePageVModel<ITEM:BaseModel>(app: BaseApplication) : BaseListVModel<ITEM>(app) {
+abstract class BasePageVModel<ITEM>(app: BaseApplication) : BaseListVModel<ITEM>(app) {
 
     /**
      * 总数量
@@ -57,7 +56,6 @@ abstract class BasePageVModel<ITEM:BaseModel>(app: BaseApplication) : BaseListVM
                     ApiErrorHelper.handleCommonError(app, it)
                 })
         )
-
     }
 
 

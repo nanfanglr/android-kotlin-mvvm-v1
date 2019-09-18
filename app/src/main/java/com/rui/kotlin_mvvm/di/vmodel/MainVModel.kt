@@ -10,7 +10,7 @@ import com.rui.kotlin_mvvm.ui.ProductImgFragment
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
 import com.rui.mvvm.vmodel.BaseViewModel
-import com.rui.toolkit.toast
+import com.rui.mvvm.toast
 import io.reactivex.subjects.Subject
 import javax.inject.Inject
 
@@ -59,7 +59,7 @@ class MainVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app) 
     }
 
     fun onSearch(v: View, keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() === KeyEvent.ACTION_DOWN) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_DOWN) {
             //                Timber.d("---------->去搜索=>" + etSearchInput.getText().toString());
             subject.onNext(keyWord.get() ?: "")
             closeKeyBoard.value = Event(Unit)
@@ -75,6 +75,5 @@ class MainVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app) 
         keyWord.set("")
         subject.onNext("")
     }
-
 
 }

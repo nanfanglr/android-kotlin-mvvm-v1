@@ -1,6 +1,5 @@
 package com.rui.kotlin_mvvm.ui.adapter
 
-
 import android.support.v4.app.FragmentActivity
 import android.support.v4.view.PagerAdapter
 import android.view.View
@@ -23,7 +22,7 @@ class ImagePagerAdapter : PagerAdapter {
     private var imgs: ArrayList<LocalMedia>
     private var rvItemPos = -1
     lateinit var colorModel: ColorModel
-    private var disableClick: Boolean = false
+     var disableClick: Boolean = false
 
     @Inject
     constructor() {
@@ -43,48 +42,44 @@ class ImagePagerAdapter : PagerAdapter {
     }
 
     override fun getCount(): Int {
-        return if (imgs == null) 0 else imgs!!.size
+        return imgs.size
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val localMedia = imgs?.get(position)
+        val localMedia = imgs[position]
         val imageView = ImageView(container.context)
         if (!disableClick)
-            imageView.setOnClickListener { v ->
+            imageView.setOnClickListener {
                 EditImagesActivity.actionStart(
                     activity, imgs, position, rvItemPos
                     , if (rvItemPos == -1) APPValue.HEAD_REQUESTCODE else APPValue.ITEM_REQUESTCODE
                 )
             }
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        val path = localMedia?.compressPath
-        val mineType = localMedia?.mimeType
+        val path = localMedia.compressPath
+        val mineType = localMedia.mimeType
         if (mineType == PictureMimeType.ofImage()) {
-            ImageLoader.displayImage(container.getContext(), path, imageView);
+            ImageLoader.displayImage(container.context, path, imageView)
         } else {
             ImageLoader.displayImage(
-                container.getContext(), path, imageView
-                , localMedia?.getDuration() ?: 0
-            );
+                container.context, path, imageView
+                , localMedia.duration
+            )
         }
         container.addView(imageView)
         return imageView
     }
 
-
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
-        container.removeView(`object` as View)
+    override fun destroyItem(container: ViewGroup, position: Int, any: Any) {
+        container.removeView(any as View)
     }
 
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view === `object`
+    override fun isViewFromObject(view: View, any: Any): Boolean {
+        return view === any
     }
 
-    override fun getItemPosition(`object`: Any): Int {
-        return PagerAdapter.POSITION_NONE
+    override fun getItemPosition(any: Any): Int {
+        return POSITION_NONE
     }
 
-    fun setDisableClick(enableClick: Boolean) {
-        this.disableClick = enableClick
-    }
 }

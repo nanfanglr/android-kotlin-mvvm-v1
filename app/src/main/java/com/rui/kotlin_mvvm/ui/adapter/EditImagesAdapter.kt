@@ -10,7 +10,8 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.rui.common.ImageLoader
 import com.rui.kotlin_mvvm.APPValue
 import com.rui.kotlin_mvvm.R
-import com.rui.toolkit.DisplayUtils
+import com.rui.mvvm.dip2px
+import com.rui.mvvm.screenWith
 import java.util.*
 import javax.inject.Inject
 
@@ -64,15 +65,10 @@ class EditImagesAdapter @Inject constructor() :
          * 设置图片的长宽
          */
         fun setImageViewSize(context: Context, imageView: View) {
-            val params = imageView.layoutParams
-            val image_width = (DisplayUtils.getScreenWidthAndHight(context)[0]
-                    - DisplayUtils.dip2px(context, 10f) * 3 - DisplayUtils.dip2px(
-                context,
-                16f
-            ) * 2) / 4
-            params.height = image_width
-            params.width = image_width
-            imageView.layoutParams = params
+            val imageWidth = (context.screenWith()
+                    - context.dip2px(10f) * 3 - context.dip2px(16f) * 2) / 4
+            imageView.layoutParams.height = imageWidth
+            imageView.layoutParams.width = imageWidth
         }
     }
 
