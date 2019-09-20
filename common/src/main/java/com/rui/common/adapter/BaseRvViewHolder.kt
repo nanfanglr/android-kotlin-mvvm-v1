@@ -10,7 +10,7 @@ import com.rui.common.R
  */
 class BaseRvViewHolder(view: View) : BaseViewHolder(view) {
 
-    fun getBinding(): ViewDataBinding {
+    fun getBinding(): ViewDataBinding? {
         return itemView.getTag(R.id.BaseQuickAdapter_databinding_support) as ViewDataBinding
     }
 }

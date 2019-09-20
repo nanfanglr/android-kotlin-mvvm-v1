@@ -99,20 +99,20 @@ abstract class BasePageVMFragment<
      * 初始化上来加载及下拉刷新ui
      */
     protected fun initRefreshLayout() {
-        refreshLayout?.let {
+        refreshLayout?.run {
             val classicsHeader = ClassicsHeader(activity)
             classicsHeader.setTextSizeTitle(14f)
             classicsHeader.setTextSizeTime(10f)
             classicsHeader.setPrimaryColor(Color.parseColor("#eeeeee"))
-            it.setRefreshHeader(classicsHeader)
+            setRefreshHeader(classicsHeader)
             val classicsFooter = ClassicsFooter(activity)
             classicsFooter.setTextSizeTitle(14f)
             classicsFooter.setPrimaryColor(Color.parseColor("#eeeeee"))
-            it.setRefreshFooter(classicsFooter)
-            it.setHeaderHeight(46f)
-            it.setFooterHeight(46f)
-            it.setOnRefreshListener { _ -> viewModel.getData(ConstantVal.LOAD_REFRESH) }
-            it.setOnLoadMoreListener { _ -> viewModel.getData(ConstantVal.LOAD_MORE) }
+            setRefreshFooter(classicsFooter)
+            setHeaderHeight(46f)
+            setFooterHeight(46f)
+            setOnRefreshListener { viewModel.getData(ConstantVal.LOAD_REFRESH) }
+            setOnLoadMoreListener { viewModel.getData(ConstantVal.LOAD_MORE) }
         }
     }
 

@@ -15,7 +15,7 @@ import com.rui.mvvm.di.module.ObservableModule
 import com.rui.mvvm.di.scopes.ActivityContext
 import com.rui.mvvm.di.scopes.ActivityScope
 import com.rui.mvvm.di.scopes.ViewModelScope
-import com.rui.toolkit.DisplayUtils
+import com.rui.mvvm.dip2px
 import com.rui.viewkit.GridSpacingItemDecoration
 import dagger.Binds
 import dagger.Module
@@ -48,7 +48,7 @@ class EditImagesModule {
 
     @Provides
     fun providesItemDecoration(context: Context): GridSpacingItemDecoration {
-        return GridSpacingItemDecoration(4, DisplayUtils.dip2px(context, 10f), false)
+        return GridSpacingItemDecoration(4, context.dip2px(10f), false)
     }
 
 }

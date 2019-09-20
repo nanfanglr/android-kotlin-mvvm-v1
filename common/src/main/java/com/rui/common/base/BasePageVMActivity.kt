@@ -14,8 +14,8 @@ import com.rui.common.ConstantVal
 import com.rui.common.R
 import com.rui.common.databinding.EmptyViewVmBinding
 import com.rui.mvvm.EventObserver
-import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.activity.BaseDaggerActivity
+import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -95,20 +95,20 @@ abstract class BasePageVMActivity<
      * 初始化上来加载及下拉刷新ui
      */
     protected fun initRefreshLayout() {
-        refreshLayout?.let {
-            val classicsHeader = ClassicsHeader(this)
+        refreshLayout?.run {
+            val classicsHeader = ClassicsHeader(this@BasePageVMActivity)
             classicsHeader.setTextSizeTitle(14f)
             classicsHeader.setTextSizeTime(10f)
             classicsHeader.setPrimaryColor(Color.parseColor("#eeeeee"))
-            it.setRefreshHeader(classicsHeader)
-            val classicsFooter = ClassicsFooter(this)
+            setRefreshHeader(classicsHeader)
+            val classicsFooter = ClassicsFooter(this@BasePageVMActivity)
             classicsFooter.setTextSizeTitle(14f)
             classicsFooter.setPrimaryColor(Color.parseColor("#eeeeee"))
-            it.setRefreshFooter(classicsFooter)
-            it.setHeaderHeight(46f)
-            it.setFooterHeight(46f)
-            it.setOnRefreshListener { _ -> viewModel.getData(ConstantVal.LOAD_REFRESH) }
-            it.setOnLoadMoreListener { _ -> viewModel.getData(ConstantVal.LOAD_MORE) }
+            setRefreshFooter(classicsFooter)
+            setHeaderHeight(46f)
+            setFooterHeight(46f)
+            setOnRefreshListener { viewModel.getData(ConstantVal.LOAD_REFRESH) }
+            setOnLoadMoreListener { viewModel.getData(ConstantVal.LOAD_MORE) }
         }
     }
 

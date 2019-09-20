@@ -21,15 +21,15 @@ open class BaseRvAdapter<T : BaseModel> constructor(@LayoutRes layoutResId: Int)
         val binding =
             DataBindingUtil.inflate<ViewDataBinding>(mLayoutInflater, layoutResId, parent, false)
                 ?: return super.getItemView(layoutResId, parent)
-        val view = binding.root
-        view.setTag(R.id.BaseQuickAdapter_databinding_support, binding)
-        return view
+        return binding.root.apply { setTag(R.id.BaseQuickAdapter_databinding_support, binding) }
     }
 
     override fun convert(helper: BaseRvViewHolder, item: T) {
         item.arrayIndex = helper.layoutPosition
-        val binding = helper.getBinding()
-        binding.setVariable(BR.itemViewModel, item)
-        binding.executePendingBindings()
+        helper.getBinding()?.apply {
+            setVariable(BR.itemViewModel, item)
+            executePendingBindings()
+        }
+
     }
 }

@@ -260,7 +260,7 @@ class ProductDtlActivity : BasePageVMActivity<
                         val imgData =
                             getParcelableArrayListExtra<Parcelable>("items") as ArrayList<LocalMedia>
                         val currentPosition = getIntExtra("currentPostion", 0)
-                        viewModel.run {
+                        with(viewModel){
                             headImgs.clear()//这种全部刷新的方式还可以尝试用DiffUtil进行优化
                             headImgs.addAll(imgData)
                             headCurrentPos.set(currentPosition)
@@ -292,10 +292,10 @@ class ProductDtlActivity : BasePageVMActivity<
                             getParcelableArrayListExtra<Parcelable>("items") as ArrayList<LocalMedia>
                         val currentPosition = getIntExtra("currentPostion", 0)
                         val rvItemPosition = getIntExtra("rvItemPosition", 0)
-                        viewModel.items[rvItemPosition - 1].run {
-                            localZSImgs.clear()
-                            localZSImgs.addAll(imgData)
-                            this.currentPosition.set(currentPosition)
+                        viewModel.items[rvItemPosition - 1].let {
+                            it.localZSImgs.clear()
+                            it.localZSImgs.addAll(imgData)
+                            it.currentPosition.set(currentPosition)
                         }
                     }
                 }

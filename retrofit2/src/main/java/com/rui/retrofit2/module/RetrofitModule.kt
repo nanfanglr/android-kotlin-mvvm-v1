@@ -61,27 +61,31 @@ class RetrofitModule {
         baseUrlInterceptor: BaseUrlInterceptor
     ): OkHttpClient {
 
-        val okHttpBuilder = OkHttpClient.Builder()
+        val okHttpBuilder = OkHttpClient.Builder().apply {
 
-        okHttpBuilder.connectTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
-        okHttpBuilder.writeTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
-        okHttpBuilder.readTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
+            connectTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
+            writeTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
+            readTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)
 
-        // Adds authentication headers when required in network calls
-        okHttpBuilder.addInterceptor(AuthenticationInterceptor(propertiesManager))
+            // Adds authentication headers when required in network calls
+            addInterceptor(AuthenticationInterceptor(propertiesManager))
 
-        // Helps with changing base url of network calls in espresso tests to the MockWebServer base url.
-        okHttpBuilder.addInterceptor(baseUrlInterceptor)
+            // Helps with changing base url of network calls in espresso tests to the MockWebServer base url.
+            addInterceptor(baseUrlInterceptor)
 
-        // Logs network calls for debug builds
-        okHttpBuilder.addInterceptor(httpLoggingInterceptor)
+            // Logs network calls for debug builds
+            addInterceptor(httpLoggingInterceptor)
+        }
 
         return okHttpBuilder.build()
     }
 
     @Provides
     @Singleton
-    internal fun providesRetrofit(okHttpClient: OkHttpClient, propertiesManager: PropertiesManager): Retrofit {
+    internal fun providesRetrofit(
+        okHttpClient: OkHttpClient,
+        propertiesManager: PropertiesManager
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(propertiesManager.getBaseUrl())
             .validateEagerly(propertiesManager.isDebug)// Fail early: check Retrofit configuration at creation time in Debug build.
