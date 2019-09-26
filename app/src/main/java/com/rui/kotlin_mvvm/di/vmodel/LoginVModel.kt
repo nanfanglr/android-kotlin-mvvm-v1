@@ -5,16 +5,15 @@ import android.content.Context
 import android.databinding.Observable
 import android.databinding.ObservableField
 import android.databinding.ObservableInt
-import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.rui.kotlin_mvvm.di.repository.UserRepository
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
 import com.rui.mvvm.network.ApiErro.ApiErrorHelper
+import com.rui.mvvm.toast
 import com.rui.mvvm.vmodel.BaseViewModel
 import com.rui.toolkit.Preference
-import com.rui.mvvm.toast
 import javax.inject.Inject
 
 
@@ -64,11 +63,11 @@ class LoginVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app)
 
     fun onClickListenerBinding(view: View) {
         when {
-            TextUtils.isEmpty(phone.get()) -> {
+            phone.get().isNullOrEmpty() -> {
                 app.toast("请填写手机号码")
                 return
             }
-            TextUtils.isEmpty(psw.get()) -> {
+            psw.get().isNullOrEmpty() -> {
                 app.toast("请输入登录密码")
                 return
             }

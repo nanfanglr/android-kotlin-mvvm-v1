@@ -30,7 +30,7 @@ object ImageLoader {
             R.drawable.img_loading,
             R.drawable.error,
             R.drawable.default_img,
-            0.toString() + ""
+            0.toString()
         )
 
     /**
@@ -80,8 +80,6 @@ object ImageLoader {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
-
     }
 
     /**
@@ -175,10 +173,3 @@ object ImageLoader {
 
 
 }
-/**
- * 自定义默认的loading图片RequestOptions
- * 此方法默认error、null图片
- *
- * @param loadingDrawable
- * @return
- */
