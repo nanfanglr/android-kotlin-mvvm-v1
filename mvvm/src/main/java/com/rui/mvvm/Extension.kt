@@ -1,6 +1,10 @@
 package com.rui.mvvm
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.support.annotation.ColorRes
+import android.support.v4.content.ContextCompat
 import android.view.WindowManager
 import android.widget.Toast
 
@@ -67,4 +71,19 @@ fun Context.screenHeight(): Int {
     val wm = getSystemService(Context.WINDOW_SERVICE) as WindowManager
     wm.defaultDisplay.getMetrics(dm)
     return dm.heightPixels
+}
+
+/**
+ * 获取颜色的扩展
+ */
+fun Context.color(@ColorRes res: Int): Int = ContextCompat.getColor(this, res)
+
+
+/**
+ * activity跳转的封装
+ */
+inline fun <reified T : Activity> Context.startActivity(vararg params: Pair<String, String>) {
+    val intent = Intent(this, T::class.java)
+    params.forEach { intent.putExtra(it.first, it.second) }
+    startActivity(intent)
 }
