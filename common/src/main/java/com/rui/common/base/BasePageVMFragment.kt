@@ -159,4 +159,10 @@ abstract class BasePageVMFragment<
         })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        //这里必须去除改监听，否则因callback中的adapter对象持有activity的引用导致内存泄漏
+        viewModel.items.removeOnListChangedCallback(rvOnListChangedCallback)
+    }
+
 }
