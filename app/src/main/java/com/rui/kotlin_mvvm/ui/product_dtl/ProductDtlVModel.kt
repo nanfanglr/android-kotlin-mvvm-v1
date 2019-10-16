@@ -1,9 +1,9 @@
-package com.rui.kotlin_mvvm.di.vmodel
+package com.rui.kotlin_mvvm.ui.product_dtl
 
 import android.databinding.*
 import com.luck.picture.lib.entity.LocalMedia
 import com.rui.common.base.BaseListVModel
-import com.rui.kotlin_mvvm.di.repository.ProductRepository
+import com.rui.kotlin_mvvm.repository.ProductRepository
 import com.rui.kotlin_mvvm.model.ColorModel
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event

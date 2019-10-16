@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui.adapter
+package com.rui.kotlin_mvvm.ui.product_dtl
 
 import android.databinding.ObservableList
 import android.support.v4.app.FragmentActivity
@@ -25,7 +25,11 @@ class ProductImgAdapter @Inject constructor() :
         //列表item数据绑定
         val binding = helper.getBinding() as ItemProductDtlBinding
         val itemImageAdapter =
-            ImagePagerAdapter(activity, helper.adapterPosition, item)
+            ImagePagerAdapter(
+                activity,
+                helper.adapterPosition,
+                item
+            )
         binding.adapter = itemImageAdapter
         val vpOnListChangedCallback =
             VPOnListChangedCallback<ObservableList<Any>>()

@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui
+package com.rui.kotlin_mvvm.ui.main.fragment
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -12,9 +12,9 @@ import com.rui.common.adapter.BaseRvAdapter
 import com.rui.common.base.BasePageVMFragment
 import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.FragmentProductImgBinding
-import com.rui.kotlin_mvvm.di.vmodel.MainVModel
-import com.rui.kotlin_mvvm.di.vmodel.ProductImgFgVModel
+import com.rui.kotlin_mvvm.ui.main.activity.MainVModel
 import com.rui.kotlin_mvvm.model.ProductModel
+import com.rui.kotlin_mvvm.ui.product_dtl.ProductDtlActivity
 import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.toast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout

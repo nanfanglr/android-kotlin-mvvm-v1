@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui.adapter
+package com.rui.kotlin_mvvm.ui.edit_images
 
 import android.content.Context
 import android.view.View
@@ -36,7 +36,10 @@ class EditImagesAdapter @Inject constructor() :
         val iv = helper.getView<ImageView>(R.id.iv_small)
         iv.scaleType = ImageView.ScaleType.CENTER_CROP
 
-        setImageViewSize(mContext, iv)
+        setImageViewSize(
+            mContext,
+            iv
+        )
 
         if (mineType == PictureMimeType.ofImage()) {
             //本地图片的展示

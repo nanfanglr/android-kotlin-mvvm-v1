@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.di.module
+package com.rui.kotlin_mvvm.di
 
 import com.rui.kotlin_mvvm.netservice.NetService
 import dagger.Module

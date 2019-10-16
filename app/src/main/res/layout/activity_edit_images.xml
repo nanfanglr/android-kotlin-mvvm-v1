@@ -9,15 +9,15 @@
 
         <variable
             name="headAdapter"
-            type="com.rui.kotlin_mvvm.ui.adapter.ImagePagerAdapter" />
+            type="com.rui.kotlin_mvvm.ui.product_dtl.ImagePagerAdapter" />
 
         <variable
             name="adapter"
-            type="com.rui.kotlin_mvvm.ui.adapter.EditImagesAdapter" />
+            type="com.rui.kotlin_mvvm.ui.edit_images.EditImagesAdapter" />
 
         <variable
             name="viewModel"
-            type="com.rui.kotlin_mvvm.di.vmodel.EditImagesVModel" />
+            type="com.rui.kotlin_mvvm.ui.edit_images.EditImagesVModel" />
 
     </data>
 

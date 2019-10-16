@@ -1,10 +1,11 @@
-package com.rui.kotlin_mvvm.ui
+package com.rui.kotlin_mvvm.ui.login
 
 import android.content.Intent
 import android.os.Bundle
 import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.ActivityLoginBinding
-import com.rui.kotlin_mvvm.di.vmodel.LoginVModel
+import com.rui.kotlin_mvvm.ui.main.activity.MainActivity
+import com.rui.kotlin_mvvm.ui.multiple_rvitem.MultipleRvItemActivity
 import com.rui.mvvm.EventObserver
 import com.rui.mvvm.activity.BaseDaggerActivity
 

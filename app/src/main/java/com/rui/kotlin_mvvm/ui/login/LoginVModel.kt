@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.di.vmodel
+package com.rui.kotlin_mvvm.ui.login
 
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
@@ -7,7 +7,7 @@ import android.databinding.ObservableField
 import android.databinding.ObservableInt
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import com.rui.kotlin_mvvm.di.repository.UserRepository
+import com.rui.kotlin_mvvm.repository.UserRepository
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
 import com.rui.mvvm.network.ApiErro.ApiErrorHelper

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.rui.kotlin_mvvm.di.vmodel.ProductDtlVModel" />
+            type="com.rui.kotlin_mvvm.ui.product_dtl.ProductDtlVModel" />
 
         <variable
             name="layoutManager"

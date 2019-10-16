@@ -19,13 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.MultipleRvItemActivity" />
-        <activity android:name=".ui.EditImagesActivity" />
-        <activity android:name=".ui.ProductDtlActivity" />
+        <activity android:name=".ui.multiple_rvitem.MultipleRvItemActivity" />
+        <activity android:name=".ui.edit_images.EditImagesActivity" />
+        <activity android:name=".ui.product_dtl.ProductDtlActivity" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.main.activity.MainActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".ui.LoginActivity">
+        <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

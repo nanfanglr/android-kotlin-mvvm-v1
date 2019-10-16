@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.rui.kotlin_mvvm.di.vmodel.LoginVModel" />
+            type="com.rui.kotlin_mvvm.ui.login.LoginVModel" />
     </data>
 
     <RelativeLayout

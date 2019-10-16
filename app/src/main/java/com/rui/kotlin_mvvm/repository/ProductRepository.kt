@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.di.repository
+package com.rui.kotlin_mvvm.repository
 
 import android.text.TextUtils
 import com.luck.picture.lib.entity.LocalMedia

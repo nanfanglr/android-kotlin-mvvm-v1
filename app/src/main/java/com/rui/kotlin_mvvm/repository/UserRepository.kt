@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.di.repository
+package com.rui.kotlin_mvvm.repository
 
 import com.rui.kotlin_mvvm.model.UserModel
 import com.rui.kotlin_mvvm.netservice.NetService

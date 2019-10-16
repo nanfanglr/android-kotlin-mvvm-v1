@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.di.vmodel
+package com.rui.kotlin_mvvm.ui.edit_images
 
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableInt

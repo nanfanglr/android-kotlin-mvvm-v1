@@ -1,11 +1,9 @@
-package com.rui.kotlin_mvvm.di.module
+package com.rui.kotlin_mvvm.ui.login
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.content.Context
 import android.support.v4.app.FragmentActivity
-import com.rui.kotlin_mvvm.di.vmodel.LoginVModel
-import com.rui.kotlin_mvvm.ui.LoginActivity
 import com.rui.mvvm.Event
 import com.rui.mvvm.di.module.ObservableModule
 import com.rui.mvvm.di.scopes.ActivityContext

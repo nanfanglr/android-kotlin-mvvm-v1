@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui
+package com.rui.kotlin_mvvm.ui.edit_images
 
 import android.app.Activity
 import android.content.Intent
@@ -19,9 +19,7 @@ import com.rui.common.base.BasePageVMActivity
 import com.rui.kotlin_mvvm.APPValue
 import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.ActivityEditImagesBinding
-import com.rui.kotlin_mvvm.di.vmodel.EditImagesVModel
-import com.rui.kotlin_mvvm.ui.adapter.EditImagesAdapter
-import com.rui.kotlin_mvvm.ui.adapter.ImagePagerAdapter
+import com.rui.kotlin_mvvm.ui.product_dtl.ImagePagerAdapter
 import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.binding.VPOnListChangedCallback
 import com.rui.mvvm.screenWith

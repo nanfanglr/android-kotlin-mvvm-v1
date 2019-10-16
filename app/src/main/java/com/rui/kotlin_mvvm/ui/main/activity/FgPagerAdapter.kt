@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui.adapter
+package com.rui.kotlin_mvvm.ui.main.activity
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

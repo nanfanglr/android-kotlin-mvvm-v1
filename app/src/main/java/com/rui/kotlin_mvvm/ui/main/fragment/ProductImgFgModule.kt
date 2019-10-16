@@ -1,12 +1,10 @@
-package com.rui.kotlin_mvvm.di.module
+package com.rui.kotlin_mvvm.ui.main.fragment
 
 import android.arch.lifecycle.ViewModel
 import android.support.v4.app.Fragment
 import com.rui.common.adapter.BaseRvAdapter
 import com.rui.kotlin_mvvm.R
-import com.rui.kotlin_mvvm.di.vmodel.ProductImgFgVModel
 import com.rui.kotlin_mvvm.model.ProductModel
-import com.rui.kotlin_mvvm.ui.ProductImgFragment
 import com.rui.mvvm.di.module.LLModule
 import com.rui.mvvm.di.module.ObservableModule
 import com.rui.mvvm.di.scopes.FragmentScope

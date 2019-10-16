@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.di.module
+package com.rui.kotlin_mvvm.ui.main.activity
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
@@ -8,9 +8,8 @@ import android.databinding.ObservableList
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
-import com.rui.kotlin_mvvm.di.vmodel.MainVModel
-import com.rui.kotlin_mvvm.ui.MainActivity
-import com.rui.kotlin_mvvm.ui.ProductImgFragment
+import com.rui.kotlin_mvvm.ui.main.fragment.ProductImgFgModule
+import com.rui.kotlin_mvvm.ui.main.fragment.ProductImgFragment
 import com.rui.mvvm.Event
 import com.rui.mvvm.di.module.ObservableModule
 import com.rui.mvvm.di.scopes.ActivityContext

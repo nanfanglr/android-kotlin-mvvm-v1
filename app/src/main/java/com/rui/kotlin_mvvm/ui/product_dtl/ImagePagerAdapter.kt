@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui.adapter
+package com.rui.kotlin_mvvm.ui.product_dtl
 
 import android.support.v4.app.FragmentActivity
 import android.support.v4.view.PagerAdapter
@@ -10,7 +10,7 @@ import com.luck.picture.lib.entity.LocalMedia
 import com.rui.common.ImageLoader
 import com.rui.kotlin_mvvm.APPValue
 import com.rui.kotlin_mvvm.model.ColorModel
-import com.rui.kotlin_mvvm.ui.EditImagesActivity
+import com.rui.kotlin_mvvm.ui.edit_images.EditImagesActivity
 import javax.inject.Inject
 
 /**

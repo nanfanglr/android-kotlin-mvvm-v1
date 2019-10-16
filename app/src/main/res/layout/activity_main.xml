@@ -11,11 +11,11 @@
 
         <variable
             name="fgPagerAdapter"
-            type="com.rui.kotlin_mvvm.ui.adapter.FgPagerAdapter" />
+            type="com.rui.kotlin_mvvm.ui.main.activity.FgPagerAdapter" />
 
         <variable
             name="viewModel"
-            type="com.rui.kotlin_mvvm.di.vmodel.MainVModel" />
+            type="com.rui.kotlin_mvvm.ui.main.activity.MainVModel" />
     </data>
 
     <LinearLayout
@@ -24,7 +24,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/white"
         android:orientation="vertical"
-        tools:context=".ui.MainActivity">
+        tools:context=".ui.main.activity.MainActivity">
 
         <com.rui.viewkit.HeadBar
             android:id="@+id/headBar"

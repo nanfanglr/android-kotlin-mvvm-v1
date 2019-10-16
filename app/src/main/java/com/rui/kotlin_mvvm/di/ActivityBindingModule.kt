@@ -13,12 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.rui.kotlin_mvvm.di.module
+package com.rui.kotlin_mvvm.di
 
-import com.rui.kotlin_mvvm.ui.EditImagesActivity
-import com.rui.kotlin_mvvm.ui.LoginActivity
-import com.rui.kotlin_mvvm.ui.MainActivity
-import com.rui.kotlin_mvvm.ui.ProductDtlActivity
+import com.rui.kotlin_mvvm.ui.edit_images.EditImagesActivity
+import com.rui.kotlin_mvvm.ui.edit_images.EditImagesModule
+import com.rui.kotlin_mvvm.ui.login.LoginActivity
+import com.rui.kotlin_mvvm.ui.login.LoginModule
+import com.rui.kotlin_mvvm.ui.main.activity.MainModule
+import com.rui.kotlin_mvvm.ui.main.activity.MainActivity
+import com.rui.kotlin_mvvm.ui.product_dtl.ProductDtlActivity
+import com.rui.kotlin_mvvm.ui.product_dtl.ProductDtlModule
 import com.rui.mvvm.di.scopes.ActivityScope
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

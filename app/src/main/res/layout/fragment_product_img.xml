@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.rui.kotlin_mvvm.di.vmodel.ProductImgFgVModel" />
+            type="com.rui.kotlin_mvvm.ui.main.fragment.ProductImgFgVModel" />
 
         <variable
             name="adapter"

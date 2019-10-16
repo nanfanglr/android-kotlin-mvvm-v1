@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.di.vmodel
+package com.rui.kotlin_mvvm.ui.main.activity
 
 import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableField
@@ -6,7 +6,7 @@ import android.databinding.ObservableList
 import android.support.v4.app.Fragment
 import android.view.KeyEvent
 import android.view.View
-import com.rui.kotlin_mvvm.ui.ProductImgFragment
+import com.rui.kotlin_mvvm.ui.main.fragment.ProductImgFragment
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
 import com.rui.mvvm.toast

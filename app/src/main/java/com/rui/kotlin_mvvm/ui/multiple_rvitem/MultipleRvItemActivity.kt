@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui
+package com.rui.kotlin_mvvm.ui.multiple_rvitem
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

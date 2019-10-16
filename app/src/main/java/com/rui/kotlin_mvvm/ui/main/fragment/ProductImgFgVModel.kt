@@ -1,8 +1,8 @@
-package com.rui.kotlin_mvvm.di.vmodel
+package com.rui.kotlin_mvvm.ui.main.fragment
 
 import com.rui.common.ConstantVal
 import com.rui.common.base.BasePageVModel
-import com.rui.kotlin_mvvm.di.repository.ProductRepository
+import com.rui.kotlin_mvvm.repository.ProductRepository
 import com.rui.kotlin_mvvm.model.ProductModel
 import com.rui.mvvm.BaseApplication
 import com.rui.retrofit2.basemodel.ResultModel

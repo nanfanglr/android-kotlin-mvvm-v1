@@ -1,4 +1,4 @@
-package com.rui.kotlin_mvvm.ui
+package com.rui.kotlin_mvvm.ui.product_dtl
 
 import android.content.Context
 import android.content.Intent
@@ -21,9 +21,6 @@ import com.rui.kotlin_mvvm.APPValue
 import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.ActivityProductDtlBinding
 import com.rui.kotlin_mvvm.databinding.RvHeadBinding
-import com.rui.kotlin_mvvm.di.vmodel.ProductDtlVModel
-import com.rui.kotlin_mvvm.ui.adapter.ImagePagerAdapter
-import com.rui.kotlin_mvvm.ui.adapter.ProductImgAdapter
 import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.binding.VPOnListChangedCallback
 import com.rui.mvvm.screenWith
