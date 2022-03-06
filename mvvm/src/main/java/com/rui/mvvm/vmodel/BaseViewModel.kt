@@ -1,7 +1,7 @@
 package com.rui.mvvm.vmodel
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event
 import io.reactivex.FlowableTransformer

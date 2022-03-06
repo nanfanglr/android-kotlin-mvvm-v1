@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+//apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -71,8 +71,8 @@ android {
         }
     }
     //DataBinding
-    dataBinding {
-        enabled true
+    buildFeatures {
+        dataBinding true
     }
 
     // 如果你的module 中使用了 Java1.8，那你必须也要添加如下代码到你的app gradle 中
@@ -107,11 +107,13 @@ dependencies {
 //    implementation projectDependencies.greendao
 //    implementation projectDependencies.stetho
 
-    // Dagger2
+// Dagger2
     implementation projectDependencies.dagger
     kapt projectDependencies.daggerAnnotationProcessor
     implementation projectDependencies.daggerAndroid
     kapt projectDependencies.daggerAndroidAnnotationProcessor
+
+    //test
     testImplementation projectDependencies.jUnit
     androidTestImplementation projectDependencies.testRunner
     androidTestImplementation projectDependencies.espressoCore

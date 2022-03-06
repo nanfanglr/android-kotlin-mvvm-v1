@@ -2,19 +2,23 @@ ext.projectDependencies = [
 
 // Kotlin
 kotlin                          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlinVersion",
+
+//Libraries
+appcompat                       : "androidx.appcompat:appcompat:$versions.appcompatVersion",
+supportDesign                   : "com.google.android.material:material:$versions.material",
+recyclerview                    : "androidx.recyclerview:recyclerview:$versions.recyclerview",
+constraintLayout                : "androidx.constraintlayout:constraintlayout:$versions.constraintLayoutVersion",
+multidex                        : "androidx.multidex:multidex:$versions.multidexVersion",
+lifecycleExtensions             : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion",
+
 // Unit test support
 jUnit                           : "junit:junit:$versions.jUnit",
 // Mocking framework to mock and verify calls.
 mockito                         : "org.mockito:mockito-core:$versions.mockito",
-//Libraries
-appcompat                       : "com.android.support:appcompat-v7:$versions.appcompatVersion",
-supportDesign                   : "com.android.support:design:$versions.appcompatVersion",
-recyclerview                    : "com.android.support:recyclerview-v7:$versions.appcompatVersion",
-constraintLayout                : "com.android.support.constraint:constraint-layout:$versions.constraintLayoutVersion",
-multidex                        : "com.android.support:multidex:$versions.multidexVersion",
-testRunner                      : "com.android.support.test:runner:$versions.testVersion",
-espressoCore                    : "com.android.support.test.espresso:espresso-core:$versions.espressoVersion",
-lifecycleExtensions             : "android.arch.lifecycle:extensions:$versions.lifecycleVersion",
+
+//test
+testRunner                      : "androidx.test:runner:$versions.testRunnerVersion",
+espressoCore                    : "androidx.test.espresso:espresso-core:$versions.espressoVersion",
 
 // Logging library
 timber                          : "com.jakewharton.timber:timber:$versions.timber",

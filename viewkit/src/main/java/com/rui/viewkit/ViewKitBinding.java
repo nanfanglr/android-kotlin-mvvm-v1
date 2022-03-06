@@ -1,7 +1,8 @@
 package com.rui.viewkit;
 
-import android.databinding.BindingAdapter;
 import android.view.View;
+
+import androidx.databinding.BindingAdapter;
 
 /**
  * Created by rui on 2018/11/15

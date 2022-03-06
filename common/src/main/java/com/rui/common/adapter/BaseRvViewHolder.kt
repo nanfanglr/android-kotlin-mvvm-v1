@@ -1,8 +1,8 @@
 package com.rui.common.adapter
 
-import android.databinding.ViewDataBinding
 import android.view.View
-import com.chad.library.adapter.base.BaseViewHolder
+import androidx.databinding.ViewDataBinding
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.rui.common.R
 
 /**
@@ -10,7 +10,7 @@ import com.rui.common.R
  */
 class BaseRvViewHolder(view: View) : BaseViewHolder(view) {
 
-    fun getBinding(): ViewDataBinding? {
-        return itemView.getTag(R.id.BaseQuickAdapter_databinding_support) as ViewDataBinding
-    }
+//    fun getBinding(): ViewDataBinding? {
+//        return itemView.getTag(R.id.BaseQuickAdapter_databinding_support) as ViewDataBinding
+//    }
 }

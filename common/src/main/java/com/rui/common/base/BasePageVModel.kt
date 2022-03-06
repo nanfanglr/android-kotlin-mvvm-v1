@@ -1,6 +1,6 @@
 package com.rui.common.base
 
-import android.databinding.ObservableInt
+import androidx.databinding.ObservableInt
 import com.rui.common.ConstantVal
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event

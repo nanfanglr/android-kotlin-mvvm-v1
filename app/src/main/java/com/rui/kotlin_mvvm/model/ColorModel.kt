@@ -1,9 +1,8 @@
 package com.rui.kotlin_mvvm.model
 
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableField
-import android.databinding.ObservableInt
-
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.rui.retrofit2.basemodel.BaseModel

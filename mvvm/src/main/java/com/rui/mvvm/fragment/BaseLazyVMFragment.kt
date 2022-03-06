@@ -1,10 +1,11 @@
 package com.rui.mvvm.fragment
 
 import android.app.ProgressDialog
-import android.databinding.ViewDataBinding
+
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.databinding.ViewDataBinding
 import com.rui.mvvm.BR
 import com.rui.mvvm.EventObserver
 import com.rui.mvvm.vmodel.BaseViewModel

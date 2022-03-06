@@ -1,10 +1,10 @@
 package com.rui.kotlin_mvvm.ui.product_dtl
 
-import android.arch.lifecycle.ViewModel
 import android.content.Context
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableList
-import android.support.v4.app.FragmentActivity
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModel
 import com.luck.picture.lib.entity.LocalMedia
 import com.rui.kotlin_mvvm.model.ColorModel
 import com.rui.mvvm.binding.VPOnListChangedCallback

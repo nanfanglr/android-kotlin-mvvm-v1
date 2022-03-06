@@ -1,12 +1,12 @@
 package com.rui.kotlin_mvvm.ui.main.fragment
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
-import android.databinding.ObservableList
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.databinding.ObservableList
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rui.common.ConstantVal
 import com.rui.common.adapter.BaseRvAdapter
 import com.rui.common.base.BasePageVMFragment

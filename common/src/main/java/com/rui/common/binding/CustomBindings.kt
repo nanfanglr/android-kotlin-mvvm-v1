@@ -15,16 +15,17 @@
  */
 package com.rui.common.binding
 
-import android.databinding.BindingAdapter
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.RecyclerView
+
 import android.text.TextUtils
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.rui.common.ImageLoader
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -70,7 +71,7 @@ fun setVpCurrentPos(viewPager: ViewPager, vpCurrentPos: Int) {
 )
 fun setRvItems(
     recyclerView: RecyclerView,
-    items: List<Any?>?,
+    items: MutableList<Any?>?,
     adapter: BaseQuickAdapter<Any?, *>?,
     layoutManager: RecyclerView.LayoutManager?,
     decoration: RecyclerView.ItemDecoration?
@@ -78,7 +79,7 @@ fun setRvItems(
     val oldAdapter = recyclerView.adapter
     if (oldAdapter !== adapter) {
         //            Timber.d("---------->setRvItems=>");
-        if (adapter != null && items != null) adapter.setNewData(items)
+        if (adapter != null && items != null) adapter.setNewInstance(items)
         if (decoration != null) recyclerView.addItemDecoration(decoration)
         if (layoutManager != null) recyclerView.layoutManager = layoutManager
         if (adapter != null) recyclerView.adapter = adapter

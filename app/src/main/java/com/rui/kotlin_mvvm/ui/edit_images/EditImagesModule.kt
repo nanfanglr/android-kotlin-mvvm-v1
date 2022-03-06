@@ -1,11 +1,11 @@
 package com.rui.kotlin_mvvm.ui.edit_images
 
-import android.arch.lifecycle.ViewModel
 import android.content.Context
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableList
-import android.support.v4.app.FragmentActivity
-import android.support.v7.widget.GridLayoutManager
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.GridLayoutManager
 import com.luck.picture.lib.entity.LocalMedia
 import com.rui.mvvm.binding.VPOnListChangedCallback
 import com.rui.mvvm.di.module.LLModule

@@ -1,7 +1,7 @@
 package com.rui.kotlin_mvvm.ui.main.fragment
 
-import android.arch.lifecycle.ViewModel
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
 import com.rui.common.adapter.BaseRvAdapter
 import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.model.ProductModel

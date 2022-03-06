@@ -1,16 +1,8 @@
 package com.rui.common.adapter
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
-import android.support.annotation.IdRes
-import android.support.annotation.LayoutRes
-import android.view.View
-import android.view.ViewGroup
-import com.android.databinding.library.baseAdapters.BR
+import androidx.annotation.LayoutRes
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.rui.common.R
 import com.rui.retrofit2.basemodel.BaseModel
-import java.util.*
 
 /**
  *Created by rui on 2019/8/10
@@ -18,33 +10,36 @@ import java.util.*
  */
 open class BaseRvAdapter<T : BaseModel> constructor(@LayoutRes layoutResId: Int) :
     BaseQuickAdapter<T, BaseRvViewHolder>(layoutResId) {
-    /**
-     * 点击事件的viewId集合
-     */
-    private val clickIds = ArrayList<Int>()
+    //    /**
+//     * 点击事件的viewId集合
+//     */
+//    private val clickIds = ArrayList<Int>()
+//
+//    override fun getItemView(layoutResId: Int, parent: ViewGroup): View {
+//        val binding =
+//            DataBindingUtil.inflate<ViewDataBinding>(mLayoutInflater, layoutResId, parent, false)
+//                ?: return super.getItemView(layoutResId, parent)
+//        return binding.root.apply { setTag(R.id.BaseQuickAdapter_databinding_support, binding) }
+//    }
+//
+//    override fun convert(helper: BaseRvViewHolder, item: T) {
+//        item.arrayIndex = helper.layoutPosition
+//        helper.getBinding()?.apply {
+//            setVariable(BR.itemViewModel, item)
+//            executePendingBindings()
+//        }
+//        clickIds.forEach { helper.addOnClickListener(it) }
+//    }
+//
+//    /**
+//     * 添加点击事件
+//     *
+//     * @param ids 需要添加点击事件的view的id
+//     */
+//    fun addItemChildClickListener(@IdRes vararg ids: Int) {
+//        ids.forEach { clickIds.add(it) }
+//    }
+    override fun convert(holder: BaseRvViewHolder, item: T) {
 
-    override fun getItemView(layoutResId: Int, parent: ViewGroup): View {
-        val binding =
-            DataBindingUtil.inflate<ViewDataBinding>(mLayoutInflater, layoutResId, parent, false)
-                ?: return super.getItemView(layoutResId, parent)
-        return binding.root.apply { setTag(R.id.BaseQuickAdapter_databinding_support, binding) }
-    }
-
-    override fun convert(helper: BaseRvViewHolder, item: T) {
-        item.arrayIndex = helper.layoutPosition
-        helper.getBinding()?.apply {
-            setVariable(BR.itemViewModel, item)
-            executePendingBindings()
-        }
-        clickIds.forEach { helper.addOnClickListener(it) }
-    }
-
-    /**
-     * 添加点击事件
-     *
-     * @param ids 需要添加点击事件的view的id
-     */
-    fun addItemChildClickListener(@IdRes vararg ids: Int) {
-        ids.forEach { clickIds.add(it) }
     }
 }

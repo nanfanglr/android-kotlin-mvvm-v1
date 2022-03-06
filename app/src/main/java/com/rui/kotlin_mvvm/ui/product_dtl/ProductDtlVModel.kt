@@ -1,6 +1,6 @@
 package com.rui.kotlin_mvvm.ui.product_dtl
 
-import android.databinding.*
+import androidx.databinding.*
 import com.luck.picture.lib.entity.LocalMedia
 import com.rui.common.base.BaseListVModel
 import com.rui.kotlin_mvvm.repository.ProductRepository

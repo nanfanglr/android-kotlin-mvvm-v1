@@ -1,7 +1,8 @@
 package com.rui.kotlin_mvvm.ui.multiple_rvitem
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+
 import com.rui.kotlin_mvvm.R
 
 class MultipleRvItemActivity : AppCompatActivity() {

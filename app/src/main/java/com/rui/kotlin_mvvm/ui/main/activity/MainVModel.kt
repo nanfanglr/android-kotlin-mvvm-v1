@@ -1,11 +1,11 @@
 package com.rui.kotlin_mvvm.ui.main.activity
 
-import android.arch.lifecycle.MutableLiveData
-import android.databinding.ObservableField
-import android.databinding.ObservableList
-import android.support.v4.app.Fragment
 import android.view.KeyEvent
 import android.view.View
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableList
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import com.rui.kotlin_mvvm.ui.main.fragment.ProductImgFragment
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event

@@ -1,12 +1,12 @@
 package com.rui.viewkit;
 
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ItemDecoration;
-import android.support.v7.widget.RecyclerView.State;
+
 import android.view.View;
 
-public class GridSpacingItemDecoration extends ItemDecoration {
+import androidx.recyclerview.widget.RecyclerView;
+
+public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
     /**
      * grid的列数
      */
@@ -26,7 +26,7 @@ public class GridSpacingItemDecoration extends ItemDecoration {
         this.includeEdge = includeEdge;
     }
 
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, State state) {
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         int position = parent.getChildAdapterPosition(view);
         //计算出position位于第几列，从0开始
         int column = position % this.spanCount;

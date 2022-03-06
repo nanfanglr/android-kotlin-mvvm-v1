@@ -1,12 +1,13 @@
 package com.rui.kotlin_mvvm.ui.login
 
-import android.arch.lifecycle.MutableLiveData
+
 import android.content.Context
-import android.databinding.Observable
-import android.databinding.ObservableField
-import android.databinding.ObservableInt
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.databinding.Observable
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
+import androidx.lifecycle.MutableLiveData
 import com.rui.kotlin_mvvm.repository.UserRepository
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event

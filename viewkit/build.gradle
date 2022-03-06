@@ -21,8 +21,8 @@ android {
         }
     }
     //DataBinding
-    dataBinding {
-        enabled true
+    buildFeatures {
+        dataBinding true
     }
 
     compileOptions {//指定jdk 1.8 默认使用lambda表达式

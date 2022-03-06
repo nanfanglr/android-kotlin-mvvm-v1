@@ -3,13 +3,14 @@ package com.rui.viewkit;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -43,15 +44,15 @@ public class PopupListWindow {
         popupWindow.setOutsideTouchable(true); // 点击外部关闭
 //        popupWindow.setAnimationStyle(R.style.popmenu_animation);
         popupWindow.setAnimationStyle(R.style.popmenu_animation);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                popupWindow.dismiss();
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(adapter, view, position);
-                }
-            }
-        });
+//        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                popupWindow.dismiss();
+//                if (onItemClickListener != null) {
+//                    onItemClickListener.onItemClick(adapter, view, position);
+//                }
+//            }
+//        });
     }
 
     public void showPopup(View view) {

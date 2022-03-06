@@ -1,13 +1,13 @@
 package com.rui.kotlin_mvvm.ui.main.activity
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import android.content.Context
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableList
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableList
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.rui.kotlin_mvvm.ui.main.fragment.ProductImgFgModule
 import com.rui.kotlin_mvvm.ui.main.fragment.ProductImgFragment
 import com.rui.mvvm.Event

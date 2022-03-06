@@ -1,10 +1,10 @@
 package com.rui.kotlin_mvvm.ui.product_dtl
 
-import android.support.v4.app.FragmentActivity
-import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager.widget.PagerAdapter
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.rui.common.ImageLoader

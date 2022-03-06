@@ -1,7 +1,8 @@
 package com.rui.kotlin_mvvm.ui.edit_images
 
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableInt
+
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableInt
 import com.luck.picture.lib.entity.LocalMedia
 import com.rui.common.base.BaseListVModel
 import com.rui.mvvm.BaseApplication

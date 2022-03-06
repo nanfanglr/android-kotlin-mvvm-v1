@@ -1,9 +1,11 @@
 package com.rui.mvvm.fragment
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
+
 import android.content.Context
-import android.databinding.ViewDataBinding
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+
 import com.rui.mvvm.vmodel.BaseViewModel
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -33,9 +35,9 @@ open abstract class BaseDaggerFragment<DB : ViewDataBinding, VM : BaseViewModel>
         return ViewModelProviders.of(this, viewModelFactory).get(modelClass)
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+        super.onAttach(requireContext())
     }
 
     override fun androidInjector(): AndroidInjector<Any> {

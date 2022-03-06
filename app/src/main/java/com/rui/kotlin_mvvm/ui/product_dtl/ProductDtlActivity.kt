@@ -2,16 +2,16 @@ package com.rui.kotlin_mvvm.ui.product_dtl
 
 import android.content.Context
 import android.content.Intent
-import android.databinding.DataBindingUtil
-import android.databinding.ObservableList
-import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.os.Parcelable
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ObservableList
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia

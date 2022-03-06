@@ -13,7 +13,7 @@
 
         <variable
             name="layoutManager"
-            type="android.support.v7.widget.RecyclerView.LayoutManager" />
+            type="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </data>
 

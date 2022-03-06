@@ -3,10 +3,11 @@ package com.rui.mvvm
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.annotation.ColorRes
-import android.support.v4.content.ContextCompat
+
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 
 /**
  *Created by rui on 2019/8/8

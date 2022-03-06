@@ -1,7 +1,7 @@
 package com.rui.mvvm.binding
 
-import android.databinding.ObservableList
-import android.support.v4.view.PagerAdapter
+import androidx.databinding.ObservableList
+import androidx.viewpager.widget.PagerAdapter
 import javax.inject.Inject
 
 /**

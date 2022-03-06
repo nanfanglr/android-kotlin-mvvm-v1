@@ -1,14 +1,14 @@
 package com.rui.common.base
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.rui.common.ConstantVal
 import com.rui.common.R
@@ -121,7 +121,8 @@ abstract class BasePageVMFragment<
      */
     protected fun initRV() {
         recyclerView.let {
-            adapter.setNewData(viewModel.items as List<Nothing>?)
+            // TODO:加载数据需要在改一下
+//            adapter.setNewInstance(viewModel.items as MutableList<Nothing>)
             it.layoutManager = layoutManager
             it.adapter = adapter
 //            binding.setVariable(BR.adapter, adapter)
@@ -145,7 +146,7 @@ abstract class BasePageVMFragment<
      * 设置空布局显示的方法
      */
     private fun setEmptyView() {
-        adapter.emptyView = emptyView
+        adapter.setEmptyView(emptyView)
     }
 
     override fun setErrorHint() {

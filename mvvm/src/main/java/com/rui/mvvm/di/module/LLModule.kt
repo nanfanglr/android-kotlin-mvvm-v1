@@ -1,8 +1,8 @@
 package com.rui.mvvm.di.module
 
 import android.content.Context
-import android.databinding.ObservableList
-import android.support.v7.widget.LinearLayoutManager
+import androidx.databinding.ObservableList
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rui.mvvm.binding.RvOnListChangedCallback
 import dagger.Module
 import dagger.Provides

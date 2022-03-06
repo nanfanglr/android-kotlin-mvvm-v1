@@ -1,9 +1,9 @@
 package com.rui.common.base
 
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.dialogfragment.BaseDaggerDialogFragment
@@ -27,18 +27,21 @@ abstract class BaseListDialogFragment<
      * @return
      */
     abstract val recyclerView: RecyclerView
+
     /**
      * 列表适配器
      */
     protected val adapter: ADAPTER by lazy {
         adapterProvider.get()
     }
+
     /**
      * 列表布局管理器
      */
     protected val layoutManager: LAYOUTMANAGER by lazy {
         layoutManagerProvider.get()
     }
+
     /**
      * 响应列表变化去刷新数据的回调
      */
@@ -65,7 +68,8 @@ abstract class BaseListDialogFragment<
      */
     protected fun initRV() {
         recyclerView.let {
-            adapter.setNewData(viewModel.items as List<Nothing>?)
+            // TODO:加载数据需要修改一下
+//            adapter.setNewData(viewModel.items as List<Nothing>?)
             it.layoutManager = layoutManager
             it.adapter = adapter
 

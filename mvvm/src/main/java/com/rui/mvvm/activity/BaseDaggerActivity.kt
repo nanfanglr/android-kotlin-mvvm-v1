@@ -1,9 +1,9 @@
 package com.rui.mvvm.activity
 
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.ViewDataBinding
 import android.os.Bundle
+import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.rui.mvvm.vmodel.BaseViewModel
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector

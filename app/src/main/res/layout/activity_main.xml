@@ -96,7 +96,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="46dp"
@@ -115,7 +115,7 @@
             android:layout_height="0.5dp"
             android:background="@color/deviderColor" />
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -2,15 +2,13 @@ package com.rui.kotlin_mvvm.ui.edit_images
 
 import android.app.Activity
 import android.content.Intent
-import android.databinding.ObservableList
 import android.os.Bundle
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
-import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback
+import androidx.databinding.ObservableList
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.chad.library.adapter.base.listener.OnItemDragListener
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
@@ -127,7 +125,7 @@ class EditImagesActivity : BasePageVMActivity<
 
             override fun onPageSelected(position: Int) {
                 viewModel.currentPostion.set(position)
-                adapter.setCurrentPosition(position)
+//                adapter.setCurrentPosition(position)
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
@@ -143,17 +141,17 @@ class EditImagesActivity : BasePageVMActivity<
 
         adapter.setOnItemChildClickListener { _, _, position ->
             viewModel.currentPostion.set(position)
-            this.adapter.setCurrentPosition(position)
+//            this.adapter.setCurrentPosition(position)
         }
 
-        //设置拖动相关
-        val itemDragAndSwipeCallback = ItemDragAndSwipeCallback(adapter)
-        val itemTouchHelper = ItemTouchHelper(itemDragAndSwipeCallback)
-        itemTouchHelper.attachToRecyclerView(binding.rvSmallImage)
-
-        //开启拖拽
-        adapter.enableDragItem(itemTouchHelper, R.id.iv_small, true)
-        adapter.setOnItemDragListener(this)
+//        //设置拖动相关
+//        val itemDragAndSwipeCallback = ItemDragAndSwipeCallback(adapter)
+//        val itemTouchHelper = ItemTouchHelper(itemDragAndSwipeCallback)
+//        itemTouchHelper.attachToRecyclerView(binding.rvSmallImage)
+//
+//        //开启拖拽
+//        adapter.enableDragItem(itemTouchHelper, R.id.iv_small, true)
+//        adapter.setOnItemDragListener(this)
         setFootView()
     }
 
@@ -177,16 +175,16 @@ class EditImagesActivity : BasePageVMActivity<
                 )
             }
         }
-        if (viewModel.items.size < 10) {
-            if (adapter.footerLayoutCount == 0) {
-                adapter.addFooterView(footView)
-                EditImagesAdapter.setImageViewSize(applicationContext, footView!!)
-                //设置脚部不占满一行
-                adapter.isFooterViewAsFlow = true
-            }
-        } else {
-            adapter.removeFooterView(footView)
-        }
+//        if (viewModel.items.size < 10) {
+//            if (adapter.footerLayoutCount == 0) {
+//                adapter.addFooterView(footView)
+//                EditImagesAdapter.setImageViewSize(applicationContext, footView!!)
+//                //设置脚部不占满一行
+//                adapter.isFooterViewAsFlow = true
+//            }
+//        } else {
+//            adapter.removeFooterView(footView)
+//        }
     }
 
     private fun showSelectDialog(requestCode: Int, rest: Int) {
@@ -261,6 +259,6 @@ class EditImagesActivity : BasePageVMActivity<
         //拖动完成之后通知头部及列表刷新数据
         viewModel.currentPostion.set(pos)
         viewModel.isShowSave.set(true)
-        adapter.setCurrentPosition(pos)
+//        adapter.setCurrentPosition(pos)
     }
 }

@@ -1,9 +1,10 @@
 package com.rui.common.base
 
-import android.arch.lifecycle.MutableLiveData
-import android.databinding.ObservableArrayList
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+
+import androidx.databinding.ObservableArrayList
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import com.rui.common.ConstantVal
 import com.rui.mvvm.BaseApplication
 import com.rui.mvvm.Event

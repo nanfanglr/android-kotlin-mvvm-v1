@@ -1,7 +1,7 @@
 package com.rui.mvvm.di.module
 
 
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider
 import com.rui.mvvm.vmodel.ViewModelFactory
 import dagger.Binds
 import dagger.Module

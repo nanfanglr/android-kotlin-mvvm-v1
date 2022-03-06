@@ -1,10 +1,9 @@
 package com.rui.mvvm.dialogfragment
 
-import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.view.View
+import androidx.databinding.ViewDataBinding
 import com.rui.mvvm.BR
-import com.rui.mvvm.dialogfragment.BaseDBDialogFragment
 import com.rui.mvvm.vmodel.BaseViewModel
 
 /**

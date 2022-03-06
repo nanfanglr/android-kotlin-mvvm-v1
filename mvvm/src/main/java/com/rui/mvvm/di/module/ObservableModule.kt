@@ -1,6 +1,6 @@
 package com.rui.mvvm.di.module
 
-import android.databinding.*
+import androidx.databinding.*
 import dagger.Module
 import dagger.Provides
 
