@@ -66,7 +66,7 @@ class ProductDtlVModel @Inject constructor(app: BaseApplication) :
                             val obj = it.obj
                             if (obj != null) {
                                 this.headImgs.addAll(obj.imgsDT)
-                                this.items.addAll(obj.colors)
+//                                this.items.addAll(obj.colors)
                                 this.prodName.set(obj.prod_NAME)
                                 this.productNum.set(obj.prod_NUM)
                                 this.prodPrice.set(obj.rack_RATE)

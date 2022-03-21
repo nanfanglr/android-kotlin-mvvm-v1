@@ -21,6 +21,7 @@ import com.rui.kotlin_mvvm.APPValue
 import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.ActivityProductDtlBinding
 import com.rui.kotlin_mvvm.databinding.RvHeadBinding
+import com.rui.kotlin_mvvm.model.ColorModel
 import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.binding.VPOnListChangedCallback
 import com.rui.mvvm.screenWith
@@ -31,11 +32,11 @@ import javax.inject.Inject
 
 
 class ProductDtlActivity : BasePageVMActivity<
+        ColorModel,
         ActivityProductDtlBinding,
         ProductDtlVModel,
         ProductImgAdapter,
-        LinearLayoutManager,
-        RvOnListChangedCallback<ObservableList<Any>>
+        LinearLayoutManager
         >() {
 
     companion object {
@@ -96,10 +97,10 @@ class ProductDtlActivity : BasePageVMActivity<
             when (view.id) {
                 //点击添加item详情图
                 R.id.item_camera_right, R.id.item_camera -> {
-                    val localZSImgs = viewModel.items[position].localZSImgs
+                    val localZSImgs = viewModel.items.value?.get(position)?.localZSImgs
                     showSelectDialog(
                         APPValue.RESULTCODE_ITEM_TAKEPHOTO,
-                        APPValue.MAX_IMG_NUM - localZSImgs.size, true
+                        APPValue.MAX_IMG_NUM - (localZSImgs?.size ?:0), true
                     )
                 }
                 //点击添加item颜色图
@@ -257,7 +258,7 @@ class ProductDtlActivity : BasePageVMActivity<
                         val imgData =
                             getParcelableArrayListExtra<Parcelable>("items") as ArrayList<LocalMedia>
                         val currentPosition = getIntExtra("currentPostion", 0)
-                        with(viewModel){
+                        with(viewModel) {
                             headImgs.clear()//这种全部刷新的方式还可以尝试用DiffUtil进行优化
                             headImgs.addAll(imgData)
                             headCurrentPos.set(currentPosition)
@@ -265,37 +266,37 @@ class ProductDtlActivity : BasePageVMActivity<
                     }
                 }
                 //列表颜色图选择相册和拍照回调
-                APPValue.RESULTCODE_COLOR_TAKEPHOTO -> {
-                    val selectList = PictureSelector.obtainMultipleResult(data)
-                    viewModel.items[viewModel.rvClickPos.get()].apply {
-                        localCLImgs.clear()
-                        localCLImgs.addAll(selectList)
-                        clImgUrl.set(clImgUrlStr)
-                    }
-
-                }
-                //列表点击item中间相机、右边相机选择相册及拍照回调
-                APPValue.RESULTCODE_ITEM_TAKEPHOTO -> {
-                    val selectList = PictureSelector.obtainMultipleResult(data)
-                    viewModel.items[viewModel.rvClickPos.get()].run {
-                        localZSImgs.addAll(selectList)
-                        currentPosition.set(localZSImgs.size - 1)
-                    }
-                }
-                //列表从编辑页面返回，保存item后返回结果
-                APPValue.ITEM_REQUESTCODE -> {
-                    data?.run {
-                        val imgData =
-                            getParcelableArrayListExtra<Parcelable>("items") as ArrayList<LocalMedia>
-                        val currentPosition = getIntExtra("currentPostion", 0)
-                        val rvItemPosition = getIntExtra("rvItemPosition", 0)
-                        viewModel.items[rvItemPosition - 1].let {
-                            it.localZSImgs.clear()
-                            it.localZSImgs.addAll(imgData)
-                            it.currentPosition.set(currentPosition)
-                        }
-                    }
-                }
+//                APPValue.RESULTCODE_COLOR_TAKEPHOTO -> {
+//                    val selectList = PictureSelector.obtainMultipleResult(data)
+//                    viewModel.items[viewModel.rvClickPos.get()].apply {
+//                        localCLImgs.clear()
+//                        localCLImgs.addAll(selectList)
+//                        clImgUrl.set(clImgUrlStr)
+//                    }
+//
+//                }
+//                //列表点击item中间相机、右边相机选择相册及拍照回调
+//                APPValue.RESULTCODE_ITEM_TAKEPHOTO -> {
+//                    val selectList = PictureSelector.obtainMultipleResult(data)
+//                    viewModel.items[viewModel.rvClickPos.get()].run {
+//                        localZSImgs.addAll(selectList)
+//                        currentPosition.set(localZSImgs.size - 1)
+//                    }
+//                }
+//                //列表从编辑页面返回，保存item后返回结果
+//                APPValue.ITEM_REQUESTCODE -> {
+//                    data?.run {
+//                        val imgData =
+//                            getParcelableArrayListExtra<Parcelable>("items") as ArrayList<LocalMedia>
+//                        val currentPosition = getIntExtra("currentPostion", 0)
+//                        val rvItemPosition = getIntExtra("rvItemPosition", 0)
+//                        viewModel.items[rvItemPosition - 1].let {
+//                            it.localZSImgs.clear()
+//                            it.localZSImgs.addAll(imgData)
+//                            it.currentPosition.set(currentPosition)
+//                        }
+//                    }
+//                }
             }
         }
     }

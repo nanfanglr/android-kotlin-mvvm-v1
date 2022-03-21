@@ -41,6 +41,10 @@ dependencies {
     api projectDependencies.recyclerview
     api projectDependencies.multidex
     api projectDependencies.lifecycleExtensions
+
+    //coroutines
+    implementation projectDependencies.coroutinesAndroid
+    implementation projectDependencies.coroutinesCore
     // RxJava
     api projectDependencies.rxAndroid
     api projectDependencies.rxJava2

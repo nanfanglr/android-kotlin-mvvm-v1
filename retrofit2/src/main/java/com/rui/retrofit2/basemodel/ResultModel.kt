@@ -7,6 +7,6 @@ class ResultModel<T> : BaseResultModel() {
 
     var obj: T? = null
 
-    var data: List<T> = ArrayList()
+    var data: MutableList<T> = mutableListOf()
 
 }

@@ -9,7 +9,14 @@ supportDesign                   : "com.google.android.material:material:$version
 recyclerview                    : "androidx.recyclerview:recyclerview:$versions.recyclerview",
 constraintLayout                : "androidx.constraintlayout:constraintlayout:$versions.constraintLayoutVersion",
 multidex                        : "androidx.multidex:multidex:$versions.multidexVersion",
+androidxCoreKtx                 : "androidx.core:core-ktx:$versions.androidxCoreKtx",
+fragmentKtx                     : "androidx.fragment:fragment-ktx:$versions.fragmentKtx",
 lifecycleExtensions             : "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion",
+livedataKtx                     : "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion",
+viewModelKtx                    : "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion",
+lifecycleRuntimeKtx             : "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycleVersion",
+coroutinesAndroid               : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion",
+coroutinesCore                  : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutinesVersion",
 
 // Unit test support
 jUnit                           : "junit:junit:$versions.jUnit",

@@ -29,6 +29,9 @@ class LoginModule {
     internal fun providesMLDUit(): MutableLiveData<Event<Unit>> = MutableLiveData()
 
 
+    @Provides
+    internal fun providesMutableLiveDataString(): MutableLiveData<String> = MutableLiveData()
+
 }
 
 @Module

@@ -15,19 +15,19 @@ import com.rui.common.R
 import com.rui.common.databinding.EmptyViewVmBinding
 import com.rui.mvvm.EventObserver
 import com.rui.mvvm.activity.BaseDaggerActivity
-import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import javax.inject.Inject
 import javax.inject.Provider
+import androidx.databinding.library.baseAdapters.BR
 
 abstract class BasePageVMActivity<
+        ITEM,
         DB : ViewDataBinding,
-        VM : BaseListVModel<*>,
-        ADAPTER : BaseQuickAdapter<*, *>,
-        LAYOUTMANAGER : RecyclerView.LayoutManager,
-        RVCB : RvOnListChangedCallback<*>
+        VM : BaseListVModel<ITEM>,
+        ADAPTER : BaseQuickAdapter<ITEM, *>,
+        LAYOUTMANAGER : RecyclerView.LayoutManager
         > : BaseDaggerActivity<DB, VM>() {
     /**
      * 子类必须实现此方法，这样才能做列表的初始化
@@ -68,21 +68,12 @@ abstract class BasePageVMActivity<
     protected val layoutManager: LAYOUTMANAGER by lazy {
         layoutManagerProvider.get()
     }
-    /**
-     * 响应列表变化去刷新数据的回调
-     */
-    protected val rvOnListChangedCallback: RVCB by lazy {
-        rvcbProvider.get()
-    }
 
     @Inject
     protected lateinit var adapterProvider: Provider<ADAPTER>
 
     @Inject
     protected lateinit var layoutManagerProvider: Provider<LAYOUTMANAGER>
-
-    @Inject
-    protected lateinit var rvcbProvider: Provider<RVCB>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,14 +108,15 @@ abstract class BasePageVMActivity<
      */
     protected open fun initRV() {
         recyclerView.let {
-            // TODO: 加载数据需要修改
-//            adapter.setNewData(viewModel.items as List<Nothing>?)
             it.layoutManager = layoutManager
             it.adapter = adapter
-//            binding.setVariable(BR.adapter, adapter)
-//            binding.setVariable(BR.layoutManager, layoutManager)
-            rvOnListChangedCallback.adapter = adapter
-            viewModel.items.addOnListChangedCallback(rvOnListChangedCallback)
+
+            binding.setVariable(BR.adapter, adapter)
+            binding.setVariable(BR.layoutManager, layoutManager)
+
+            viewModel.items.observe(this@BasePageVMActivity) {
+                adapter.setList(it)
+            }
         }
     }
 
@@ -155,11 +147,4 @@ abstract class BasePageVMActivity<
             }
         })
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //这里必须去除改监听，否则因callback中的adapter对象持有activity的引用导致内存泄漏
-        viewModel.items.removeOnListChangedCallback(rvOnListChangedCallback)
-    }
-
 }

@@ -7,6 +7,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.databinding.Observable
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.rui.kotlin_mvvm.repository.UserRepository
 import com.rui.mvvm.BaseApplication
@@ -31,7 +32,7 @@ class LoginVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app)
      * edittext输入值
      */
     @Inject
-    lateinit var phone: ObservableField<String>
+    lateinit var phone: MutableLiveData<String>
     /**
      *保存本地的sharePreference
      */
@@ -40,7 +41,7 @@ class LoginVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app)
      * 登录密码
      */
     @Inject
-    lateinit var psw: ObservableField<String>
+    lateinit var psw: MutableLiveData<String>
     /**
      * 将edittext光标的位置移动到最后
      */
@@ -50,25 +51,17 @@ class LoginVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app)
     @Inject
     lateinit var repository: UserRepository
 
-    fun initEvent() {
-        phone.set(userMobile)
-        phone.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
-            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
-                //需要判断inputPhone是否为空 否则会出现输入第一个数无法选择到末尾的情况
-                phone.get()?.run {
-                    phoneLength.set(this.length)
-                }
-            }
-        })
+    fun initPhone() {
+        phone.value =userMobile
     }
 
     fun onClickListenerBinding(view: View) {
         when {
-            phone.get().isNullOrEmpty() -> {
+            phone.value.isNullOrEmpty() -> {
                 app.toast("请填写手机号码")
                 return
             }
-            psw.get().isNullOrEmpty() -> {
+            psw.value.isNullOrEmpty() -> {
                 app.toast("请输入登录密码")
                 return
             }
@@ -78,14 +71,14 @@ class LoginVModel @Inject constructor(app: BaseApplication) : BaseViewModel(app)
             }
         }
         addSubscribe(repository
-            .getLoginOB(phone.get(), psw.get())
+            .getLoginOB(phone.value, psw.value)
             .compose(singleTransformer())
             .subscribe(
                 {
                     if (it.success) {
                         loginSuccess.value = Event(Unit)
-                        userMobile = phone.get().toString()
-                        app.toast("登录成功${phone.get().toString()}")
+                        userMobile = phone.value.toString()
+                        app.toast("登录成功${phone.value.toString()}")
                     } else {
                         app.toast(it.msg)
                     }

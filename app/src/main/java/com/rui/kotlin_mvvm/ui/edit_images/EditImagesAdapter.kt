@@ -3,6 +3,8 @@ package com.rui.kotlin_mvvm.ui.edit_images
 import android.content.Context
 import android.view.View
 import android.widget.ImageView
+import androidx.databinding.ViewDataBinding
+import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
@@ -21,60 +23,55 @@ import javax.inject.Inject
  * 如果需要使用databinding，需要继承LocalMedia这个类去使用绑定
  */
 class EditImagesAdapter @Inject constructor() :
-    BaseRvAdapter<BaseModel>(R.layout.item_samll_image) {
+    BaseRvAdapter<LocalMedia>(R.layout.item_samll_image) {
 
-//    private var currentPosition: Int = 0
-//
-//    fun setCurrentPosition(currentPosition: Int) {
-//        this.currentPosition = currentPosition
-//        notifyDataSetChanged()
-//    }
-//
-//    override fun convert(helper: BaseViewHolder, item: LocalMedia) {
-//        helper.addOnClickListener(R.id.iv_small)
-//        val mineType = item.mimeType
-//
-//        val iv = helper.getView<ImageView>(R.id.iv_small)
-//        iv.scaleType = ImageView.ScaleType.CENTER_CROP
-//
-//        setImageViewSize(
-//            mContext,
-//            iv
-//        )
-//
-//        if (mineType == PictureMimeType.ofImage()) {
-//            //本地图片的展示
-//            ImageLoader.displayImage(mContext, item.compressPath, iv)
-//        } else if (mineType == APPValue.NET_IMAGE) {
-//            //网络图片的展示
-//            ImageLoader.displayImage(
-//                mContext,
-//                item.path,
-//                iv,
-//                item.duration
-//            )
-//        }
-//
-//        //默认当前展示的图片为选中状态
-//        iv.isSelected = helper.adapterPosition == currentPosition
-//
-//    }
-//
-//    override fun getViewByPosition(position: Int, viewId: Int): View? {
-//        return super.getViewByPosition(position, viewId)
-//    }
-//
-//    companion object {
-//        /**
-//         * 设置图片的长宽
-//         */
-//        fun setImageViewSize(context: Context, imageView: View) {
-//            val imageWidth = (context.screenWith()
-//                    - context.dip2px(10f) * 3 - context.dip2px(16f) * 2) / 4
-//            imageView.layoutParams.height = imageWidth
-//            imageView.layoutParams.width = imageWidth
-//        }
-//    }
+    private var currentPosition: Int = 0
+
+    fun setCurrentPosition(currentPosition: Int) {
+        this.currentPosition = currentPosition
+        notifyDataSetChanged()
+    }
+
+
+    override fun convert(holder: BaseDataBindingHolder<ViewDataBinding>, item: LocalMedia) {
+        addChildClickViewIds(R.id.iv_small)
+        val mineType = item.mimeType
+
+        val iv = holder.getView<ImageView>(R.id.iv_small)
+        iv.scaleType = ImageView.ScaleType.CENTER_CROP
+
+        setImageViewSize(context, iv)
+
+        if (mineType == PictureMimeType.ofImage()) {
+            //本地图片的展示
+            ImageLoader.displayImage(context, item.compressPath, iv)
+        } else if (mineType == APPValue.NET_IMAGE) {
+            //网络图片的展示
+            ImageLoader.displayImage(
+                context,
+                item.path,
+                iv,
+                item.duration
+            )
+        }
+
+        //默认当前展示的图片为选中状态
+        iv.isSelected = holder.adapterPosition == currentPosition
+
+    }
+
+
+    companion object {
+        /**
+         * 设置图片的长宽
+         */
+        fun setImageViewSize(context: Context, imageView: View) {
+            val imageWidth = (context.screenWith()
+                    - context.dip2px(10f) * 3 - context.dip2px(16f) * 2) / 4
+            imageView.layoutParams.height = imageWidth
+            imageView.layoutParams.width = imageWidth
+        }
+    }
 
 }
 

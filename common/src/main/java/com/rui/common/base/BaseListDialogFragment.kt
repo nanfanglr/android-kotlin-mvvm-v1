@@ -5,20 +5,21 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.dialogfragment.BaseDaggerDialogFragment
 import javax.inject.Inject
 import javax.inject.Provider
+
+import androidx.databinding.library.baseAdapters.BR
 
 /**
  *Created by rui on 2019/9/3
  */
 abstract class BaseListDialogFragment<
+        ITEM,
         DB : ViewDataBinding,
-        VM : BaseListVModel<*>,
-        ADAPTER : BaseQuickAdapter<*, *>,
-        LAYOUTMANAGER : RecyclerView.LayoutManager,
-        RVCB : RvOnListChangedCallback<*>
+        VM : BaseListVModel<ITEM>,
+        ADAPTER : BaseQuickAdapter<ITEM, *>,
+        LAYOUTMANAGER : RecyclerView.LayoutManager
         > : BaseDaggerDialogFragment<DB, VM>() {
 
     /**
@@ -42,21 +43,11 @@ abstract class BaseListDialogFragment<
         layoutManagerProvider.get()
     }
 
-    /**
-     * 响应列表变化去刷新数据的回调
-     */
-    protected val rvOnListChangedCallback: RVCB by lazy {
-        rvcbProvider.get()
-    }
-
     @Inject
     protected lateinit var adapterProvider: Provider<ADAPTER>
 
     @Inject
     protected lateinit var layoutManagerProvider: Provider<LAYOUTMANAGER>
-
-    @Inject
-    protected lateinit var rvcbProvider: Provider<RVCB>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -68,23 +59,16 @@ abstract class BaseListDialogFragment<
      */
     protected fun initRV() {
         recyclerView.let {
-            // TODO:加载数据需要修改一下
-//            adapter.setNewData(viewModel.items as List<Nothing>?)
             it.layoutManager = layoutManager
             it.adapter = adapter
 
-//            binding.setVariable(BR.adapter, adapter)
-//            binding.setVariable(BR.layoutManager, layoutManager)
+            binding.setVariable(BR.adapter, adapter)
+            binding.setVariable(BR.layoutManager, layoutManager)
 
-            rvOnListChangedCallback.adapter = adapter
-            viewModel.items.addOnListChangedCallback(rvOnListChangedCallback)
+            viewModel.items.observe(this@BaseListDialogFragment.viewLifecycleOwner) {
+                adapter.setList(it)
+            }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //这里必须去除改监听，否则因callback中的adapter对象持有activity的引用导致内存泄漏
-        viewModel.items.removeOnListChangedCallback(rvOnListChangedCallback)
     }
 
 }

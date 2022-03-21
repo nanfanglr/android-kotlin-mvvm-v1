@@ -20,7 +20,7 @@ class ProductImgAdapter @Inject constructor() :
     @Inject
     lateinit var activity: FragmentActivity
 
-    override fun convert(helper: BaseRvViewHolder, item: ColorModel) {
+//    override fun convert(helper: BaseRvViewHolder, item: ColorModel) {
         //列表item数据绑定
 //        val binding = helper.getBinding() as? ItemProductDtlBinding
 //        val itemImageAdapter =
@@ -63,6 +63,6 @@ class ProductImgAdapter @Inject constructor() :
 //                override fun onPageScrollStateChanged(state: Int) {}
 //            })
 //        }
-    }
+//    }
 
 }

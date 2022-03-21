@@ -14,23 +14,24 @@ import com.rui.common.ConstantVal
 import com.rui.common.R
 import com.rui.common.databinding.EmptyViewVmBinding
 import com.rui.mvvm.EventObserver
-import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.fragment.BaseDaggerFragment
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import javax.inject.Inject
 import javax.inject.Provider
+import androidx.databinding.library.baseAdapters.BR
+import timber.log.Timber
 
 /**
  *Created by rui on 2019/9/3
  */
 abstract class BasePageVMFragment<
+        ITEM,
         DB : ViewDataBinding,
-        VM : BaseListVModel<*>,
-        ADAPTER : BaseQuickAdapter<*, *>,
-        LAYOUTMANAGER : RecyclerView.LayoutManager,
-        RVCB : RvOnListChangedCallback<*>
+        VM : BasePageVModel<ITEM>,
+        ADAPTER : BaseQuickAdapter<ITEM, *>,
+        LAYOUTMANAGER : RecyclerView.LayoutManager
         > : BaseDaggerFragment<DB, VM>() {
 
     /**
@@ -39,12 +40,14 @@ abstract class BasePageVMFragment<
      * @return
      */
     abstract val recyclerView: RecyclerView
+
     /**
      * 子类必须实现此方法，这样才能做列表的初始化
      *
      * @return
      */
     abstract val refreshLayout: SmartRefreshLayout?
+
     /**
      * 空的布局
      */
@@ -66,17 +69,12 @@ abstract class BasePageVMFragment<
     protected val adapter: ADAPTER by lazy {
         adapterProvider.get()
     }
+
     /**
      * 列表布局管理器
      */
     protected val layoutManager: LAYOUTMANAGER by lazy {
         layoutManagerProvider.get()
-    }
-    /**
-     * 响应列表变化去刷新数据的回调
-     */
-    protected val rvOnListChangedCallback: RVCB by lazy {
-        rvcbProvider.get()
     }
 
     @Inject
@@ -84,9 +82,6 @@ abstract class BasePageVMFragment<
 
     @Inject
     protected lateinit var layoutManagerProvider: Provider<LAYOUTMANAGER>
-
-    @Inject
-    protected lateinit var rvcbProvider: Provider<RVCB>
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -120,15 +115,16 @@ abstract class BasePageVMFragment<
      * 初始化列表相关的view及适配器
      */
     protected fun initRV() {
-        recyclerView.let {
-            // TODO:加载数据需要在改一下
-//            adapter.setNewInstance(viewModel.items as MutableList<Nothing>)
-            it.layoutManager = layoutManager
-            it.adapter = adapter
-//            binding.setVariable(BR.adapter, adapter)
-//            binding.setVariable(BR.layoutManager, layoutManager)
-            rvOnListChangedCallback.adapter = adapter
-            viewModel.items.addOnListChangedCallback(rvOnListChangedCallback)
+        recyclerView.let { rv ->
+            Timber.d("-------->initRV")
+            rv.layoutManager = layoutManager
+            rv.adapter = adapter
+            binding.setVariable(BR.adapter, adapter)
+            binding.setVariable(BR.layoutManager, layoutManager)
+            viewModel.items1.observe(this@BasePageVMFragment.viewLifecycleOwner) {
+                Timber.d("-------->initRV observe")
+                adapter.setList(it)
+            }
         }
     }
 
@@ -136,7 +132,7 @@ abstract class BasePageVMFragment<
      *
      */
     private fun initEmptyOB() {
-        viewModel.empty.observe(this, EventObserver {
+        viewModel.empty.observe(viewLifecycleOwner, EventObserver {
             viewModel.emptyText.set(this.getString(R.string.empty_no_data))
             setEmptyView()
         })
@@ -158,12 +154,6 @@ abstract class BasePageVMFragment<
                 setEmptyView()
             }
         })
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        //这里必须去除改监听，否则因callback中的adapter对象持有activity的引用导致内存泄漏
-        viewModel.items.removeOnListChangedCallback(rvOnListChangedCallback)
     }
 
 }

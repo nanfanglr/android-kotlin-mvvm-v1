@@ -107,6 +107,15 @@ dependencies {
 //    implementation projectDependencies.greendao
 //    implementation projectDependencies.stetho
 
+    //ktx
+    implementation projectDependencies.livedataKtx
+    implementation projectDependencies.viewModelKtx
+    implementation projectDependencies.lifecycleRuntimeKtx
+
+    //coroutines
+    implementation projectDependencies.coroutinesAndroid
+    implementation projectDependencies.coroutinesCore
+
 // Dagger2
     implementation projectDependencies.dagger
     kapt projectDependencies.daggerAnnotationProcessor

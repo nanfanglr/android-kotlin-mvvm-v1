@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.ObservableList
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.chad.library.adapter.base.listener.OnItemDragListener
@@ -22,6 +23,7 @@ import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.binding.VPOnListChangedCallback
 import com.rui.mvvm.screenWith
 import com.rui.mvvm.toast
+import com.rui.retrofit2.basemodel.BaseModel
 import com.rui.viewkit.GridSpacingItemDecoration
 import com.rui.viewkit.PhotoDialog
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
@@ -29,17 +31,18 @@ import javax.inject.Inject
 
 
 class EditImagesActivity : BasePageVMActivity<
+        LocalMedia,
         ActivityEditImagesBinding,
         EditImagesVModel,
         EditImagesAdapter,
-        GridLayoutManager,
-        RvOnListChangedCallback<ObservableList<Any>>>()
+        GridLayoutManager
+    >()
     , OnItemDragListener {
 
     companion object {
         fun actionStart(
             context: Activity,
-            data: ArrayList<LocalMedia>,
+            data: MutableList<LocalMedia>?,
             currentPostion: Int,
             rvItemPosition: Int,
             requestCode: Int
@@ -47,7 +50,7 @@ class EditImagesActivity : BasePageVMActivity<
             //apply函数中使用this，并返回自己
             //also函数中使用it，并返回自己
             val intent = Intent(context, EditImagesActivity::class.java).also {
-                it.putExtra("items", data)
+                it.putExtra("items", arrayListOf(data))
                 it.putExtra("currentPostion", currentPostion)
                 it.putExtra("rvItemPosition", rvItemPosition)
             }
@@ -85,7 +88,7 @@ class EditImagesActivity : BasePageVMActivity<
         with(intent) {
             val imgData =
                 getParcelableArrayListExtra<LocalMedia>("items") as List<LocalMedia>
-            viewModel.items.addAll(imgData)
+            viewModel.items.value?.addAll(imgData)
             val currentPosition = getIntExtra("currentPostion", 0)
             viewModel.currentPostion.set(currentPosition)
             val rvItemPosition = getIntExtra("rvItemPosition", -1)
@@ -97,9 +100,11 @@ class EditImagesActivity : BasePageVMActivity<
         mainImageAdapter.disableClick = true
         binding.headAdapter = mainImageAdapter
         vpOnListChangedCallback.adapter = mainImageAdapter
-        viewModel.items.addOnListChangedCallback(vpOnListChangedCallback)
+        viewModel.items.observe(this){
+            mainImageAdapter.setSelectList(it)
+        }
 
-        mainImageAdapter.setSelectList(viewModel.items)
+
 
         binding.pagerMain.layoutParams.height = screenWith()
 
@@ -141,7 +146,7 @@ class EditImagesActivity : BasePageVMActivity<
 
         adapter.setOnItemChildClickListener { _, _, position ->
             viewModel.currentPostion.set(position)
-//            this.adapter.setCurrentPosition(position)
+            this.adapter.setCurrentPosition(position)
         }
 
 //        //设置拖动相关
@@ -152,7 +157,7 @@ class EditImagesActivity : BasePageVMActivity<
 //        //开启拖拽
 //        adapter.enableDragItem(itemTouchHelper, R.id.iv_small, true)
 //        adapter.setOnItemDragListener(this)
-        setFootView()
+//        setFootView()
     }
 
     /**
@@ -171,7 +176,7 @@ class EditImagesActivity : BasePageVMActivity<
             footView?.setOnClickListener {
                 showSelectDialog(
                     APPValue.RESULTCODE_DT_TAKEPHOTO,
-                    APPValue.MAX_IMG_NUM - viewModel.items.size
+                    APPValue.MAX_IMG_NUM - (viewModel.items.value?.size ?: 0)
                 )
             }
         }

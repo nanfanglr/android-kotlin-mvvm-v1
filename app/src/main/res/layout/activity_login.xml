@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -115,17 +114,6 @@
                 android:text="登录"
                 android:textColor="@color/color_ffffff"
                 android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tv_multiple"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/tv_version"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/button_bg_select_send"
-                android:padding="10dp"
-                android:text="多布局绑定示例" />
 
             <TextView
                 android:id="@+id/tv_version"

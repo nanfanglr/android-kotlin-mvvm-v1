@@ -19,14 +19,14 @@ import javax.inject.Inject
 class ImagePagerAdapter : PagerAdapter {
     @Inject
     lateinit var activity: FragmentActivity
-    private var imgs: ArrayList<LocalMedia>
+    private var imgs: MutableList<LocalMedia>?
     private var rvItemPos = -1
     lateinit var colorModel: ColorModel
-     var disableClick: Boolean = false
+    var disableClick: Boolean = false
 
     @Inject
     constructor() {
-        imgs = ArrayList()
+        imgs = mutableListOf()
     }
 
     constructor(activity: FragmentActivity, rvItemPos: Int, colorModel: ColorModel) {
@@ -36,34 +36,36 @@ class ImagePagerAdapter : PagerAdapter {
         this.activity = activity
     }
 
-    fun setSelectList(selectList: List<LocalMedia>) {
-        this.imgs = selectList as ArrayList<LocalMedia>
+    fun setSelectList(selectList: MutableList<LocalMedia>?) {
+        this.imgs = selectList
         notifyDataSetChanged()
     }
 
     override fun getCount(): Int {
-        return imgs.size
+        return imgs?.size ?: 0
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
-        val localMedia = imgs[position]
+        val localMedia = imgs?.get(position)
         val imageView = ImageView(container.context)
         if (!disableClick)
             imageView.setOnClickListener {
                 EditImagesActivity.actionStart(
-                    activity, imgs, position, rvItemPos
-                    , if (rvItemPos == -1) APPValue.HEAD_REQUESTCODE else APPValue.ITEM_REQUESTCODE
+                    activity,
+                    imgs,
+                    position,
+                    rvItemPos,
+                    if (rvItemPos == -1) APPValue.HEAD_REQUESTCODE else APPValue.ITEM_REQUESTCODE
                 )
             }
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        val path = localMedia.compressPath
-        val mineType = localMedia.mimeType
+        val path = localMedia?.compressPath
+        val mineType = localMedia?.mimeType
         if (mineType == PictureMimeType.ofImage()) {
             ImageLoader.displayImage(container.context, path, imageView)
         } else {
             ImageLoader.displayImage(
-                container.context, path, imageView
-                , localMedia.duration
+                container.context, path, imageView, localMedia?.duration ?: 0
             )
         }
         container.addView(imageView)

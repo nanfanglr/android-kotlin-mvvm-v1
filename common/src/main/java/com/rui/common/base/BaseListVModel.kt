@@ -4,6 +4,7 @@ package com.rui.common.base
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.rui.common.ConstantVal
 import com.rui.mvvm.BaseApplication
@@ -19,27 +20,32 @@ import io.reactivex.schedulers.Schedulers
 /**
  *Created by rui on 2019/8/8
  */
-abstract class BaseListVModel<ITEM >(app: BaseApplication) : BaseViewModel(app) {
+abstract class BaseListVModel<ITEM>(app: BaseApplication) : BaseViewModel(app) {
     /**
      * 数据集
      */
-    val items = ObservableArrayList<ITEM>()
+    val items = MutableLiveData<MutableList<ITEM>?>()
+
     /**
      * 下拉刷新完成
      */
     val finishRefreshing = ObservableBoolean()
+
     /**
      * 上拉加载完成
      */
     val finishLoadmore = ObservableBoolean()
+
     /**
      * 没有更多数据了
      */
     val loadNoMoreData = ObservableBoolean()
+
     /**
      * 没有列表数据通知事件
      */
     val empty = MutableLiveData<Event<Unit>>()
+
     /**
      * 列表为空的提示文案
      */
@@ -88,10 +94,11 @@ abstract class BaseListVModel<ITEM >(app: BaseApplication) : BaseViewModel(app) 
                 .subscribe(
                     {
                         if (it.success) {
-                            items.clear()
-                            items.addAll(it.data)
+//                            items.clear()
+//                            items.addAll(it.data)
+                            items.value = it.data
                             calculateTotal()
-                            if (items.size == 0) empty.value = Event(Unit)
+                            if (it.data.isEmpty()) empty.value = Event(Unit)
                         } else {
                             dataLoadingError.value = Event(it.msg)
                         }
@@ -103,6 +110,7 @@ abstract class BaseListVModel<ITEM >(app: BaseApplication) : BaseViewModel(app) 
     }
 
     abstract fun getDataOB(): Single<ResultModel<ITEM>>
+
     /**
      * 计算数组item某些属性的总和，根据需要重写此方法即可
      */

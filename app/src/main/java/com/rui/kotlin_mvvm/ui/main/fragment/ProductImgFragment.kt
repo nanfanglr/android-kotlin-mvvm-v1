@@ -15,7 +15,6 @@ import com.rui.kotlin_mvvm.databinding.FragmentProductImgBinding
 import com.rui.kotlin_mvvm.ui.main.activity.MainVModel
 import com.rui.kotlin_mvvm.model.ProductModel
 import com.rui.kotlin_mvvm.ui.product_dtl.ProductDtlActivity
-import com.rui.mvvm.binding.RvOnListChangedCallback
 import com.rui.mvvm.toast
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import io.reactivex.disposables.Disposable
@@ -25,11 +24,11 @@ import timber.log.Timber
  *Created by rui on 2019/9/11
  */
 class ProductImgFragment : BasePageVMFragment<
+        ProductModel,
         FragmentProductImgBinding,
         ProductImgFgVModel,
         BaseRvAdapter<ProductModel>,
-        LinearLayoutManager,
-        RvOnListChangedCallback<ObservableList<Any>>
+        LinearLayoutManager
         >() {
 
     companion object {
@@ -61,8 +60,10 @@ class ProductImgFragment : BasePageVMFragment<
     override fun lazyFetchData() {
         // 当没有数据时才可以去请求数据
         Timber.d("-------->lazyFetchData")
-        if (viewModel.items.size <= 0)
+        if (viewModel.items1.value==null || viewModel.items1.value?.isEmpty() == true){
+            Timber.d("-------->lazyFetchData2")
             viewModel.getData(ConstantVal.LOAD_FIRST)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,6 +78,7 @@ class ProductImgFragment : BasePageVMFragment<
     }
 
     private lateinit var subscribe: Disposable
+
     /**
      * fragment所在activity的的viewmodel
      */
