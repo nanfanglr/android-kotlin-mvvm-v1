@@ -3,7 +3,6 @@ package com.rui.mvvm.activity
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.rui.mvvm.vmodel.BaseViewModel
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -26,6 +25,7 @@ open abstract class BaseDaggerActivity<DB : ViewDataBinding, VM : BaseViewModel>
     @Inject
     protected lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ open abstract class BaseDaggerActivity<DB : ViewDataBinding, VM : BaseViewModel>
      * @return
      */
     override fun obtainViewModel(modelClass: Class<VM>): VM {
-        return ViewModelProviders.of(this, viewModelFactory).get(modelClass)
+        return ViewModelProvider(this, viewModelFactory).get(modelClass)
     }
 
 

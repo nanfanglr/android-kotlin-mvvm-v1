@@ -18,19 +18,10 @@ open abstract class BaseVMActivity<DB : ViewDataBinding, VM : BaseViewModel>
      */
     protected lateinit var viewModel: VM
 
-    private val _processBar: ProgressDialog by lazy {
-        ProgressDialog(
-            this,
-            ProgressDialog.THEME_HOLO_LIGHT
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = obtainViewModel(getVMClass())
         bindingVM()
-        setLoadingBar()
-        setErrorHint()
     }
 
     /**
@@ -55,43 +46,6 @@ open abstract class BaseVMActivity<DB : ViewDataBinding, VM : BaseViewModel>
         binding.setVariable(BR.viewModel, viewModel)
     }
 
-    /**
-     * 如果该页面不需要统一的loading效果可以重写此方法
-     */
-    protected open fun setLoadingBar() {
-        viewModel.dataLoading.observe(this, EventObserver {
-            if (it) showProcessBar(getLoadingText()) else _processBar.cancel()
-        })
-    }
 
-    protected open fun showProcessBar(message: String) {
-        if (_processBar.isShowing) {
-            _processBar.dismiss()
-        }
-        with(_processBar) {
-            setMessage(message)
-            show()
-            setCanceledOnTouchOutside(false)
-            setCancelable(true)
-        }
-    }
-
-    /**
-     * 重写此方法改变loading效果的文案
-     *
-     * @return
-     */
-    protected open fun getLoadingText(): String {
-        return "正在获取信息，请稍候！"
-    }
-
-    /**
-     * 加载错误统一提示，如果不需要就重写此方法
-     */
-    protected open fun setErrorHint() {
-        viewModel.dataLoadingError.observe(this, EventObserver {
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-        })
-    }
 
 }

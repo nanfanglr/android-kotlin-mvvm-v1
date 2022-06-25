@@ -4,8 +4,6 @@ package com.rui.mvvm.fragment
 import android.content.Context
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-
 import com.rui.mvvm.vmodel.BaseViewModel
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -32,7 +30,7 @@ open abstract class BaseDaggerFragment<DB : ViewDataBinding, VM : BaseViewModel>
      * @return
      */
     override fun obtainViewModel(modelClass: Class<VM>): VM {
-        return ViewModelProviders.of(this, viewModelFactory).get(modelClass)
+        return ViewModelProvider(this, viewModelFactory).get(modelClass)
     }
 
     override fun onAttach(context: Context) {

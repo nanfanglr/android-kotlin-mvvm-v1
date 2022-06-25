@@ -137,14 +137,5 @@ abstract class BasePageVMActivity<
         adapter.setEmptyView(emptyView)
     }
 
-    override fun setErrorHint() {
-        viewModel.dataLoadingError.observe(this, EventObserver {
-            if (adapter.itemCount > 0) {
-                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-            } else {
-                viewModel.emptyText.set(it)
-                setEmptyView()
-            }
-        })
-    }
+
 }

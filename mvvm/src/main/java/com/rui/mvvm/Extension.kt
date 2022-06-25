@@ -88,3 +88,5 @@ inline fun <reified T : Activity> Context.startActivity(vararg params: Pair<Stri
     params.forEach { intent.putExtra(it.first, it.second) }
     startActivity(intent)
 }
+
+

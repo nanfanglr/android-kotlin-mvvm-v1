@@ -21,18 +21,32 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
 /**
  * ViewModelFactory which uses Dagger to create the instances.
  */
 class ViewModelFactory @Inject constructor(
-    private val creators: @JvmSuppressWildcards Map<Class<out ViewModel>, Provider<ViewModel>>
+    private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
 
+    init {
+        println("rui viewModelFactory init")
+    }
+
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val found = creators.entries.find { modelClass.isAssignableFrom(it.key) }
-        val creator = found?.value
-            ?: throw IllegalArgumentException("unknown model class " + modelClass)
+        var creator: Provider<out ViewModel>? = creators[modelClass]
+        if (creator == null) {
+            for ((key, value) in creators) {
+                if (modelClass.isAssignableFrom(key)) {
+                    creator = value
+                    break
+                }
+            }
+        }
+        if (creator == null) {
+            throw IllegalArgumentException("Unknown model class: $modelClass")
+        }
         try {
             @Suppress("UNCHECKED_CAST")
             return creator.get() as T

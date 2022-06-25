@@ -11,6 +11,7 @@ import dagger.Provides
  * 提供ObservableString、Observablelong、Observableint等基础类注入
  *  Created by rui on 2019/8/7
  */
+@Deprecated("Will remove")
 @Module
 class LLModule {
 

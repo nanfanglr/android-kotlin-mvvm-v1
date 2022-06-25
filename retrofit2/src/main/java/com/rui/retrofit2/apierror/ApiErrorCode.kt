@@ -1,5 +1,7 @@
 package com.rui.retrofit2.apierror
 
+import com.google.gson.Gson
+
 /**
  * 定义APP相关网络错误常量
  * Created by rui on 2018/7/31.
@@ -37,3 +39,7 @@ interface ApiErrorCode {
         val ERROR_NO_DATA = 12
     }
 }
+
+inline fun <reified T> Gson.fromJson(json: String) =
+
+    fromJson(json, T::class.java)

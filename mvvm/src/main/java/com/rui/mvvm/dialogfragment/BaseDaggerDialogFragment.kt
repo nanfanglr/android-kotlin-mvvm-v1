@@ -14,9 +14,6 @@ import javax.inject.Inject
 /**
  *Created by rui on 2019/9/3
  */
-/**
- *Created by rui on 2019/8/2
- */
 open abstract class BaseDaggerDialogFragment<DB : ViewDataBinding, VM : BaseViewModel>
     : BaseVMDialogFragment<DB, VM>(), HasAndroidInjector {
 
@@ -42,7 +39,7 @@ open abstract class BaseDaggerDialogFragment<DB : ViewDataBinding, VM : BaseView
      * @return
      */
     override fun obtainViewModel(modelClass: Class<VM>): VM {
-        return ViewModelProviders.of(this, viewModelFactory).get(modelClass)
+        return ViewModelProvider(this, viewModelFactory).get(modelClass)
     }
 
 

@@ -8,6 +8,7 @@ import timber.log.Timber
 /**
  *Created by rui on 2019/8/8
  */
+@Deprecated("Will remove")
 class RvOnListChangedCallback<T : ObservableList<*>> : ObservableList.OnListChangedCallback<T>() {
 
     var adapter: RecyclerView.Adapter<*>? = null

@@ -41,6 +41,9 @@ dependencies {
     api projectDependencies.recyclerview
     api projectDependencies.multidex
     api projectDependencies.lifecycleExtensions
+    implementation projectDependencies.androidxCoreKtx
+    implementation "androidx.activity:activity-ktx:1.2.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.0"
 
     //coroutines
     implementation projectDependencies.coroutinesAndroid

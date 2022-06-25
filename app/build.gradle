@@ -101,6 +101,9 @@ dependencies {
     implementation projectDependencies.constraintLayout
     implementation projectDependencies.recyclerview
     implementation projectDependencies.supportDesign
+    implementation projectDependencies.androidxCoreKtx
+    implementation "androidx.activity:activity-ktx:1.2.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.0"
     implementation(projectDependencies.PictureSelector) {
         exclude group: 'com.github.bumptech.glide'
     }

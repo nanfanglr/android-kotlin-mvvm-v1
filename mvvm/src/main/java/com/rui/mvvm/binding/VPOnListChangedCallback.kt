@@ -7,6 +7,7 @@ import javax.inject.Inject
 /**
  * Created by rui on 2019/9/12
  */
+@Deprecated("Will remove")
 class VPOnListChangedCallback<T : ObservableList<*>> @Inject constructor() :
     ObservableList.OnListChangedCallback<T>() {
 
