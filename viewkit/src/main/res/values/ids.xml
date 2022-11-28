@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--预置id-->
+    <item name="fragment_container_for_test" type="id" />
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme_App_Theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--主题中指定引用具体值-->
+        <item name="colorAppPrimary">@color/gray_bg1</item>
+        <item name="margin">@dimen/margin_side</item>
+    </style>
+</resources>

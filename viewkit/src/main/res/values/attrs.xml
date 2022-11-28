@@ -14,5 +14,8 @@
         <attr name="leftTextSize" format="dimension" />
         <attr name="leftTextColor" format="color" />
     </declare-styleable>
+    <!--创建引用-->
+    <attr name="colorAppPrimary" format="color" />
+    <attr name="margin" format="dimension" />
 
 </resources>
