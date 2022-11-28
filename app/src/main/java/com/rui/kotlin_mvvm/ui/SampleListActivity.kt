@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil.setContentView
 import com.rui.kotlin_mvvm.R
 import com.rui.kotlin_mvvm.databinding.ActivitySampleListBinding
+import com.rui.kotlin_mvvm.ui.htmltext.HtmlTextActivity
 import com.rui.kotlin_mvvm.ui.login.LoginActivity
 import com.rui.mvvm.toast
 
@@ -22,7 +23,7 @@ class SampleListActivity : AppCompatActivity() {
 
         contentViewBinding.button.setOnClickListener {
             //login demo
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
         }
 
         contentViewBinding.button2.setOnClickListener {
@@ -44,6 +45,10 @@ class SampleListActivity : AppCompatActivity() {
             //single activity and multiple Fragment implements
             //use Navigation lib or not?
             toast("5")
+        }
+
+        contentViewBinding.button6.setOnClickListener {
+            startActivity(Intent(this, HtmlTextActivity::class.java))
         }
     }
 }

@@ -1,3 +1,4 @@
 <resources>
     <!--    <string name="app_name">kotlin_mvvm</string>-->
+    <string name="html_text" translatable="false"><![CDATA[This is a html text for testing textView:<ul><li>the first text</li><li>the second text</li><li>the third text</li></ul>That is all. For more content, please join <a href ="https://www.baidu.com">Baidu Com</a> ]]></string>
 </resources>

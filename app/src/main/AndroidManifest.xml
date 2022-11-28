@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".ui.htmltext.HtmlTextActivity"
+            android:exported="false" />
         <activity android:name=".ui.SampleListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,16 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        >
         <activity android:name=".ui.multiple_rvitem.MultipleRvItemActivity" />
         <activity android:name=".ui.edit_images.EditImagesActivity" />
         <activity android:name=".ui.product_dtl.ProductDtlActivity" />
         <activity
             android:name=".ui.main.activity.MainActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".ui.login.LoginActivity">
-
-        </activity>
+        <activity android:name=".ui.login.LoginActivity"></activity>
     </application>
 
 </manifest>

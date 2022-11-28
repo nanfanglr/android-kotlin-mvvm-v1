@@ -92,9 +92,10 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:text="非DataBing的MVVM架构实践"
+            android:text="Html text In TextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
